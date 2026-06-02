@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "senha_admin": "nortear2025"
+  },
+  "contatos": {
+    "whatsapp": "5584994055713",
+    "email": "oi@nortearmundo.com.br",
+    "instagram_url": "#",
+    "instagram_label": "Instagram · @nortearmundo",
+    "cnpj": "00.000.000/0001-00",
+    "cidade": "Rio Grande do Norte · Brasil",
+    "radar_url": "RADAR_GROUP_URL",
+    "tagline": "A gente cuida do seu sonho do começo ao fim.",
+    "copyright": "© 2025 Nortear Mundo · CNPJ 00.000.000/0001-00",
+    "endereco": "Rio Grande do Norte · Brasil<br>Atendimento 24h durante viagens"
+  },
+  "hero": {
+    "eyebrow": "Agência de viagem · desde 2021 · Nordeste, Brasil",
+    "heading": "A viagem que você<br>sempre sonhou,<br>do jeitinho certo.",
+    "subtext": "<em>A gente não vende pacote. A gente cuida do seu sonho do começo ao fim.</em> Roteiro feito pra você, suporte humano 24h e alguém do seu lado quando o imprevisto aparecer.",
+    "beneficio1": "Suporte 24h durante a viagem",
+    "beneficio2": "Roteiros 100% personalizados",
+    "beneficio3": "Atendimento humano de verdade"
+  },
+  "sobre": {
+    "foto_url": "assets/photo-socias.webp",
+    "foto_alt": "Luna Carvalho e Caroline Lisboa, fundadoras da Nortear Mundo",
+    "tag": "Luna & Carol · Fundadoras",
+    "heading": "Duas potiguares que nunca pararam de <em>nortear o mundo.</em>",
+    "paragrafo1": "Somos Luna Carvalho e Caroline Lisboa, nascidas e criadas no Rio Grande do Norte com a cabeça sempre a mil em novos destinos. A paixão por viajar e conhecer o mundo foi o que uniu a nossa história — e a Nortear Mundo nasceu exatamente desse encontro.",
+    "paragrafo2": "Desde 2021, a nossa missão é nortear seus próximos destinos com facilidade, acolhimento e preços justos. Da passagem ao roteiro da sua viagem dos sonhos, a gente vai de mãos dadas com você.",
+    "paragrafo3": "Preparada pra embarcar? <em>A gente tá pronta.</em>",
+    "nome1": "Luna Carvalho",
+    "nome2": "Caroline Lisboa"
+  },
+  "destinos": [
+    {
+      "titulo": "Lisboa & Porto",
+      "badge": "Europa · 10 dias",
+      "texto": "Bairros que ninguém indica e uma noite de fado fora do circuito turístico.",
+      "imagem_url": "assets/photo-journeys-vertical.webp",
+      "imagem_posicao": "center 18%"
+    },
+    {
+      "titulo": "Maldivas em ritmo lento",
+      "badge": "Tropical · 7 dias",
+      "texto": "Uma ilha, sete dias, um único deck pro pôr do sol. Viajar também é ficar.",
+      "imagem_url": "assets/photo-tropical-sunset.webp",
+      "imagem_posicao": ""
+    },
+    {
+      "titulo": "Japão dos detalhes",
+      "badge": "Ásia · 12 dias",
+      "texto": "Templos ao amanhecer, ruelas escondidas e o ritmo certo entre Tóquio e Kyoto.",
+      "imagem_url": "assets/photo-journeys-vertical.webp",
+      "imagem_posicao": "center 72%"
+    },
+    {
+      "titulo": "Itália do norte ao sul",
+      "badge": "Itália · 5 dias",
+      "texto": "Milão, Florença e Roma sem virar maratona — a gente sabe onde cortar.",
+      "imagem_url": "assets/photo-airport-gate.webp",
+      "imagem_posicao": ""
+    },
+    {
+      "titulo": "Caribe sem pressa",
+      "badge": "Caribe · 8 dias",
+      "texto": "Mar transparente, all-inclusive selecionado a dedo e zero preocupação.",
+      "imagem_url": "assets/photo-tropical-sunset.webp",
+      "imagem_posicao": "center 80%"
+    }
+  ],
+  "depoimentos": [
+    {
+      "quote": "A Luna e a Carol organizaram cada detalhe da nossa lua de mel. Chegamos e tudo estava perfeito — só surpresas boas do começo ao fim.",
+      "nome": "Mariana & Thiago",
+      "destino": "Paris, França · Jun/25",
+      "coluna": 1
+    },
+    {
+      "quote": "Primeira viagem internacional com os filhos e eu estava com medo de tudo dar errado. A Nortear segurou a nossa mão do início ao fim.",
+      "nome": "Rafael Souza",
+      "destino": "Orlando, EUA · Jan/25",
+      "coluna": 1
+    },
+    {
+      "quote": "Nunca imaginei que poderia viajar para a Europa com o orçamento que eu tinha. Elas encontraram uma combinação incrível pra mim.",
+      "nome": "Camila Torres",
+      "destino": "Lisboa + Madri · Out/24",
+      "coluna": 1
+    },
+    {
+      "quote": "O suporte em tempo real fez toda a diferença. Tivemos um contratempo no aeroporto e em minutos a Carol já estava resolvendo tudo.",
+      "nome": "Bruno Lima",
+      "destino": "Cancún, México · Mar/25",
+      "coluna": 2
+    },
+    {
+      "quote": "Planejei minha primeira viagem solo e a Nortear me deu toda a segurança que eu precisava. Me senti acompanhada em cada passo.",
+      "nome": "Letícia Ferreira",
+      "destino": "Japão · Abr/25",
+      "coluna": 2
+    },
+    {
+      "quote": "Grupo de amigos organizando viagem é sempre um pesadelo. Com a Nortear foi o oposto — cada um teve suas necessidades atendidas.",
+      "nome": "André & Priscila",
+      "destino": "Bali, Indonésia · Jul/24",
+      "coluna": 2
+    },
+    {
+      "quote": "Voltei da Itália apaixonada não só pelo país, mas pela forma como fui atendida. Já estou planejando a próxima com elas.",
+      "nome": "Fernanda Oliveira",
+      "destino": "Roma + Florença · Set/24",
+      "coluna": 3
+    },
+    {
+      "quote": "Achei que viagem especial era só para quem tinha muito dinheiro. A Nortear me mostrou que dá para se sentir único dentro do orçamento certo.",
+      "nome": "Diego Mendes",
+      "destino": "Dubai, EAU · Dez/24",
+      "coluna": 3
+    },
+    {
+      "quote": "Minha avó queria conhecer o exterior antes dos 80 anos. A Luna criou um roteiro especial para ela. Chorei de gratidão.",
+      "nome": "Isabela Rocha",
+      "destino": "Portugal · Fev/25",
+      "coluna": 3
+    }
+  ],
+  "radar": {
+    "heading": "Ofertas de passagem toda semana,<br>direto no seu WhatsApp.",
+    "texto": "Sem spam, sem enrolação. Só as promoções que valem a pena — garimpadas por quem respira viagem.",
+    "cta": "Entrar no Radar de Milhas"
+  },
+  "principio": {
+    "eyebrow": "O nosso propósito",
+    "texto": "Nortear é <em>cuidar</em>: a viagem começa quando você para de se preocupar e começa a só <em>viver</em>."
+  }
+}

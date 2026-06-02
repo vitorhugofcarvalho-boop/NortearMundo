@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nortear Mundo — Agência de viagem que cuida de você</title>
+<meta name="description" content="Roteiros personalizados, suporte 24h e o cuidado de quem faz da sua viagem uma história. Fale com a Nortear Mundo e realize o destino que você sempre sonhou.">
+<meta name="theme-color" content="#0D3B6E">
+
+<!-- Fonts: self-hosted woff2 — zero requisição para o Google -->
+<link rel="preload" href="fonts/playfair-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/dmsans-400.woff2"   as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts.css">
+
+<!-- LCP poster: carrega antes de qualquer coisa -->
+<link rel="preload" as="image" href="assets/photo-tropical-sunset.webp" fetchpriority="high">
+
+<link rel="stylesheet" href="colors_and_type.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Inline SVG sprite — zero runtime JS externo -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-camera"       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+  <symbol id="i-compass"      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/><circle cx="12" cy="12" r="10"/></symbol>
+  <symbol id="i-heart"        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+  <symbol id="i-mail"         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-map"          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/></symbol>
+  <symbol id="i-message-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+  <symbol id="i-phone-call"   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/><path d="M14.05 2a9 9 0 0 1 8 7.94"/><path d="M14.05 6A5 5 0 0 1 18 10"/></symbol>
+  <symbol id="i-star"         viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></symbol>
+  <symbol id="i-check"        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+</svg>
+
+<!-- ===== HEADER ===== -->
+<header class="nm-header" id="topo">
+  <a href="#topo" class="nm-logo" aria-label="Nortear Mundo — início">
+    <img src="assets/logo-nortear.svg" alt="Nortear Mundo" class="nm-logo-svg">
+  </a>
+  <button class="nm-nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nm-nav">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nm-nav" id="nm-nav">
+    <a href="#sobre">Sobre</a>
+    <a href="#processo">Como funciona</a>
+    <a href="#roteiros">Roteiros</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#radar">Radar de Milhas</a>
+    <a class="nm-btn nm-btn-primary nm-nav-cta" href="#cotacao">
+      Quero minha cotação <svg class="ico"><use href="#i-arrow-right"></use></svg>
+    </a>
+  </nav>
+  <a class="nm-btn nm-btn-primary nm-header-cta" href="#cotacao">
+    Quero minha cotação <svg class="ico"><use href="#i-arrow-right"></use></svg>
+  </a>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="nm-hero">
+  <video class="nm-hero-bg" autoplay muted loop playsinline preload="none"
+         poster="assets/photo-tropical-sunset.webp"
+         data-src="assets/hero-drone-sea.mp4"></video>
+  <div class="nm-hero-overlay"></div>
+  <div class="nm-hero-inner">
+    <div class="nm-eyebrow" data-key="hero.eyebrow">Agência de viagem · desde 2021 · Nordeste, Brasil</div>
+    <h1 class="nm-display" data-key="hero.heading" data-key-type="html">
+      A viagem que você<br>
+      sempre sonhou,<br>
+      do jeitinho certo.
+    </h1>
+    <p class="nm-hero-sub" data-key="hero.subtext" data-key-type="html">
+      <em>A gente não vende pacote. A gente cuida do seu sonho do começo ao fim.</em> Roteiro feito pra você, suporte humano 24h e alguém do seu lado quando o imprevisto aparecer.
+    </p>
+    <div class="nm-hero-cta">
+      <a class="nm-btn nm-btn-primary nm-btn-large" href="#cotacao">
+        Montar minha viagem <svg class="ico"><use href="#i-arrow-right"></use></svg>
+      </a>
+      <a class="nm-btn nm-btn-ghost-dark" href="#radar">
+        ✈️ Entrar no Radar de Milhas
+      </a>
+    </div>
+  </div>
+  <div class="nm-hero-foot">
+    <div><svg class="ico"><use href="#i-message-circle"></use></svg> <span data-key="hero.beneficio1">Suporte 24h durante a viagem</span></div>
+    <div><svg class="ico"><use href="#i-map"></use></svg> <span data-key="hero.beneficio2">Roteiros 100% personalizados</span></div>
+    <div><svg class="ico"><use href="#i-heart"></use></svg> <span data-key="hero.beneficio3">Atendimento humano de verdade</span></div>
+  </div>
+</section>
+
+<!-- ===== SOBRE ===== -->
+<section class="nm-about" id="sobre">
+  <div class="nm-about-inner">
+    <div class="nm-about-photo-wrap reveal">
+      <img src="assets/photo-socias.webp"
+           data-key="sobre.foto_url" data-key-type="src"
+           data-key-alt="sobre.foto_alt"
+           alt="Luna Carvalho e Caroline Lisboa, fundadoras da Nortear Mundo"
+           class="nm-about-photo" loading="lazy" width="480" height="640">
+      <div class="nm-about-photo-tag" data-key="sobre.tag">Luna &amp; Carol · Fundadoras</div>
+    </div>
+    <div class="nm-about-content reveal" data-delay="1">
+      <div class="nm-eyebrow nm-eyebrow-dark">Quem vai cuidar de você</div>
+      <h2 class="nm-h2" data-key="sobre.heading" data-key-type="html">Duas potiguares que nunca pararam de <em>nortear o mundo.</em></h2>
+      <p data-key="sobre.paragrafo1">Somos Luna Carvalho e Caroline Lisboa, nascidas e criadas no Rio Grande do Norte com a cabeça sempre a mil em novos destinos. A paixão por viajar e conhecer o mundo foi o que uniu a nossa história — e a Nortear Mundo nasceu exatamente desse encontro.</p>
+      <p data-key="sobre.paragrafo2">Desde 2021, a nossa missão é nortear seus próximos destinos com facilidade, acolhimento e preços justos. Da passagem ao roteiro da sua viagem dos sonhos, a gente vai de mãos dadas com você.</p>
+      <p data-key="sobre.paragrafo3" data-key-type="html">Preparada pra embarcar? <em>A gente tá pronta.</em></p>
+      <div class="nm-about-sigs">
+        <span class="nm-about-sig" data-key="sobre.nome1">Luna Carvalho</span>
+        <span class="nm-about-sig-sep">·</span>
+        <span class="nm-about-sig" data-key="sobre.nome2">Caroline Lisboa</span>
+      </div>
+      <a class="nm-btn nm-btn-primary" href="#cotacao">
+        Falar com a gente <svg class="ico"><use href="#i-arrow-right"></use></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DIFERENCIAIS ===== -->
+<section class="nm-diferenciais" id="diferenciais">
+  <div class="nm-dif3-head nm-section-head reveal">
+    <div class="nm-eyebrow nm-eyebrow-dark">Por que a Nortear</div>
+    <h2 class="nm-h2">A gente compete em <em>presença</em>, não em preço.</h2>
+    <p class="nm-lede">A maioria das agências some depois da venda. A gente fica — e essa diferença muda tudo na hora que o imprevisto chega.</p>
+  </div>
+
+  <div class="nm-dif3-grid">
+
+    <!-- Coluna esquerda -->
+    <div class="nm-dif3-col nm-dif3-col-left">
+      <div class="nm-dif3-item reveal">
+        <span class="nm-dif3-check"><svg class="ico"><use href="#i-check"></use></svg></span>
+        <p><strong>Suporte 24h de verdade.</strong> 23h, uma sexta no exterior, a bagagem sumiu &mdash; e sempre tem alguém da Nortear do seu lado, resolvendo enquanto você só segue o roteiro.</p>
+      </div>
+      <div class="nm-dif3-item reveal" data-delay="1">
+        <span class="nm-dif3-check"><svg class="ico"><use href="#i-check"></use></svg></span>
+        <p><strong>Roteiros com curadoria real.</strong> Cada roteiro nasce da conversa com você: o que ama, como viaja, o que não pode faltar. Nenhum é copiado do anterior.</p>
+      </div>
+      <div class="nm-dif3-item reveal" data-delay="2">
+        <span class="nm-dif3-check"><svg class="ico"><use href="#i-check"></use></svg></span>
+        <p><strong>Assessoria antes da venda.</strong> A primeira pergunta é "como você viaja?", não "qual o orçamento?". A gente escuta e só oferece o que faz sentido.</p>
+      </div>
+    </div>
+
+    <!-- Centro: logo animada -->
+    <div class="nm-dif3-center reveal" data-delay="1">
+      <div class="nm-dif3-logo-wrap">
+        <svg class="nm-dif3-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70.04 54.66" aria-hidden="true">
+          <g fill="currentColor">
+          <path d="M13.4 7.48V7.880000000000001Q12.72 7.9 12.370000000000001 8.08Q12.02 8.26 11.899999999999999 8.66Q11.78 9.06 11.78 9.8V21.740000000000002Q11.66 21.740000000000002 11.55 21.740000000000002Q11.44 21.740000000000002 11.32 21.740000000000002L2.92 8.76V19.32Q2.92 20.04 3.05 20.45Q3.18 20.86 3.5700000000000003 21.03Q3.96 21.2 4.74 21.240000000000002V21.64Q4.38 21.6 3.8 21.590000000000003Q3.22 21.580000000000002 2.7 21.580000000000002Q2.2 21.580000000000002 1.69 21.590000000000003Q1.18 21.6 0.84 21.64V21.240000000000002Q1.52 21.2 1.87 21.03Q2.22 20.86 2.34 20.45Q2.46 20.04 2.46 19.32V9.6Q2.46 8.86 2.34 8.51Q2.22 8.16 1.87 8.030000000000001Q1.52 7.9 0.84 7.880000000000001V7.48Q1.18 7.5 1.69 7.5200000000000005Q2.2 7.540000000000001 2.7 7.540000000000001Q3.14 7.540000000000001 3.54 7.5200000000000005Q3.94 7.5 4.26 7.48L11.32 18.36V9.8Q11.32 9.06 11.190000000000001 8.66Q11.06 8.26 10.67 8.08Q10.28 7.9 9.5 7.880000000000001V7.48Q9.86 7.5 10.45 7.5200000000000005Q11.040000000000001 7.540000000000001 11.540000000000001 7.540000000000001Q12.06 7.540000000000001 12.57 7.5200000000000005Q13.08 7.5 13.4 7.48Z"/>
+          <path d="M19.6 11.06Q20.880000000000003 11.06 21.900000000000002 11.620000000000001Q22.92 12.18 23.53 13.379999999999999Q24.14 14.58 24.14 16.5Q24.14 18.42 23.53 19.61Q22.92 20.8 21.900000000000002 21.36Q20.880000000000003 21.92 19.6 21.92Q18.34 21.92 17.310000000000002 21.36Q16.28 20.8 15.670000000000002 19.61Q15.06 18.42 15.06 16.5Q15.06 14.58 15.670000000000002 13.379999999999999Q16.28 12.18 17.310000000000002 11.620000000000001Q18.34 11.06 19.6 11.06ZM19.6 11.46Q18.46 11.46 17.73 12.64Q17.0 13.82 17.0 16.5Q17.0 19.18 17.73 20.35Q18.46 21.52 19.6 21.52Q20.740000000000002 21.52 21.470000000000002 20.35Q22.200000000000003 19.18 22.200000000000003 16.5Q22.200000000000003 13.82 21.470000000000002 12.64Q20.740000000000002 11.46 19.6 11.46Z"/>
+          <path d="M31.880000000000003 11.06Q32.42 11.06 32.83 11.280000000000001Q33.24 11.5 33.47 11.850000000000001Q33.7 12.200000000000001 33.7 12.64Q33.7 13.14 33.39 13.52Q33.08 13.9 32.56 13.9Q32.14 13.9 31.82 13.63Q31.5 13.360000000000001 31.5 12.860000000000001Q31.5 12.48 31.71 12.21Q31.92 11.94 32.18 11.780000000000001Q32.04 11.58 31.76 11.58Q31.14 11.58 30.62 11.95Q30.1 12.32 29.740000000000002 12.9Q29.380000000000003 13.48 29.18 14.13Q28.98 14.780000000000001 28.98 15.34V19.580000000000002Q28.98 20.560000000000002 29.55 20.89Q30.12 21.22 31.1 21.22V21.64Q30.64 21.62 29.8 21.590000000000003Q28.96 21.560000000000002 28.020000000000003 21.560000000000002Q27.340000000000003 21.560000000000002 26.67 21.590000000000003Q26.000000000000004 21.62 25.66 21.64V21.22Q26.48 21.22 26.830000000000002 20.92Q27.180000000000003 20.62 27.180000000000003 19.78V13.52Q27.180000000000003 12.620000000000001 26.860000000000003 12.190000000000001Q26.540000000000003 11.76 25.66 11.76V11.34Q26.3 11.4 26.900000000000002 11.4Q27.48 11.4 28.01 11.33Q28.540000000000003 11.26 28.98 11.120000000000001V13.620000000000001Q29.200000000000003 13.040000000000001 29.610000000000003 12.450000000000001Q30.020000000000003 11.860000000000001 30.6 11.46Q31.180000000000003 11.06 31.880000000000003 11.06Z"/>
+          <path d="M37.78 8.02V11.360000000000001H40.74V11.76H37.78V19.5Q37.78 20.44 38.120000000000005 20.82Q38.46000000000001 21.2 39.06 21.2Q39.660000000000004 21.2 40.10000000000001 20.71Q40.540000000000006 20.22 40.86000000000001 19.060000000000002L41.260000000000005 19.16Q41.06 20.32 40.47 21.12Q39.88 21.92 38.660000000000004 21.92Q37.980000000000004 21.92 37.540000000000006 21.75Q37.1 21.580000000000002 36.760000000000005 21.26Q36.32000000000001 20.8 36.150000000000006 20.16Q35.980000000000004 19.52 35.980000000000004 18.46V11.76H34.06V11.360000000000001H35.980000000000004V8.3Q36.480000000000004 8.280000000000001 36.940000000000005 8.22Q37.400000000000006 8.16 37.78 8.02Z"/>
+          <path d="M46.5 11.06Q48.260000000000005 11.06 49.25 12.13Q50.24 13.200000000000001 50.24 15.46H43.18L43.160000000000004 15.08H48.32Q48.36 14.100000000000001 48.16 13.27Q47.96 12.44 47.53 11.94Q47.1 11.44 46.42 11.44Q45.5 11.44 44.790000000000006 12.36Q44.080000000000005 13.280000000000001 43.940000000000005 15.280000000000001L44.0 15.36Q43.96 15.66 43.94 16.020000000000003Q43.92 16.380000000000003 43.92 16.740000000000002Q43.92 18.1 44.36 19.080000000000002Q44.800000000000004 20.060000000000002 45.510000000000005 20.57Q46.22 21.080000000000002 46.980000000000004 21.080000000000002Q47.580000000000005 21.080000000000002 48.120000000000005 20.89Q48.660000000000004 20.7 49.120000000000005 20.259999999999998Q49.58 19.82 49.92 19.080000000000002L50.32 19.240000000000002Q50.1 19.900000000000002 49.6 20.520000000000003Q49.1 21.14 48.34 21.53Q47.580000000000005 21.92 46.580000000000005 21.92Q45.14 21.92 44.11 21.26Q43.080000000000005 20.6 42.53 19.43Q41.980000000000004 18.26 41.980000000000004 16.740000000000002Q41.980000000000004 14.98 42.540000000000006 13.71Q43.1 12.44 44.120000000000005 11.75Q45.14 11.06 46.5 11.06Z"/>
+          <path d="M54.60000000000001 21.78Q53.78000000000001 21.78 53.18000000000001 21.47Q52.580000000000005 21.16 52.27000000000001 20.6Q51.96000000000001 20.04 51.96000000000001 19.3Q51.96000000000001 18.42 52.370000000000005 17.86Q52.78000000000001 17.3 53.42000000000001 16.96Q54.06000000000001 16.62 54.77000000000001 16.39Q55.480000000000004 16.16 56.120000000000005 15.95Q56.760000000000005 15.74 57.17 15.46Q57.580000000000005 15.18 57.580000000000005 14.72V13.48Q57.580000000000005 12.64 57.330000000000005 12.2Q57.080000000000005 11.76 56.66000000000001 11.61Q56.24000000000001 11.46 55.720000000000006 11.46Q55.220000000000006 11.46 54.650000000000006 11.600000000000001Q54.080000000000005 11.74 53.74000000000001 12.18Q54.120000000000005 12.26 54.400000000000006 12.58Q54.68000000000001 12.9 54.68000000000001 13.4Q54.68000000000001 13.9 54.36000000000001 14.190000000000001Q54.040000000000006 14.48 53.540000000000006 14.48Q52.96000000000001 14.48 52.69000000000001 14.11Q52.42000000000001 13.74 52.42000000000001 13.280000000000001Q52.42000000000001 12.76 52.68000000000001 12.440000000000001Q52.940000000000005 12.120000000000001 53.34 11.84Q53.800000000000004 11.52 54.53 11.29Q55.260000000000005 11.06 56.18000000000001 11.06Q57.00000000000001 11.06 57.58000000000001 11.25Q58.16000000000001 11.44 58.540000000000006 11.8Q59.06000000000001 12.280000000000001 59.22000000000001 12.97Q59.38000000000001 13.66 59.38000000000001 14.620000000000001V20.18Q59.38000000000001 20.68 59.53000000000001 20.9Q59.68000000000001 21.12 60.00000000000001 21.12Q60.220000000000006 21.12 60.42 21.020000000000003Q60.620000000000005 20.92 60.900000000000006 20.7L61.120000000000005 21.04Q60.7 21.36 60.32000000000001 21.57Q59.940000000000005 21.78 59.30000000000001 21.78Q58.720000000000006 21.78 58.34 21.58Q57.96000000000001 21.38 57.77000000000001 20.990000000000002Q57.580000000000005 20.6 57.580000000000005 20.0Q57.040000000000006 20.900000000000002 56.290000000000006 21.340000000000003Q55.540000000000006 21.78 54.60000000000001 21.78ZM55.32000000000001 20.98Q55.980000000000004 20.98 56.550000000000004 20.6Q57.120000000000005 20.22 57.580000000000005 19.46V15.54Q57.34 15.88 56.88000000000001 16.11Q56.42000000000001 16.34 55.88000000000001 16.57Q55.34 16.8 54.85000000000001 17.11Q54.36000000000001 17.42 54.040000000000006 17.92Q53.720000000000006 18.42 53.720000000000006 19.22Q53.720000000000006 20.02 54.150000000000006 20.5Q54.580000000000005 20.98 55.32000000000001 20.98Z"/>
+          <path d="M67.94000000000001 11.06Q68.48 11.06 68.89000000000001 11.280000000000001Q69.30000000000001 11.5 69.53 11.850000000000001Q69.76 12.200000000000001 69.76 12.64Q69.76 13.14 69.45000000000002 13.52Q69.14000000000001 13.9 68.62 13.9Q68.2 13.9 67.88 13.63Q67.56 13.360000000000001 67.56 12.860000000000001Q67.56 12.48 67.77000000000001 12.21Q67.98 11.94 68.24000000000001 11.780000000000001Q68.10000000000001 11.58 67.82000000000001 11.58Q67.2 11.58 66.68 11.95Q66.16000000000001 12.32 65.80000000000001 12.9Q65.44000000000001 13.48 65.24000000000001 14.13Q65.04 14.780000000000001 65.04 15.34V19.580000000000002Q65.04 20.560000000000002 65.61000000000001 20.89Q66.18 21.22 67.16000000000001 21.22V21.64Q66.7 21.62 65.86000000000001 21.590000000000003Q65.02000000000001 21.560000000000002 64.08000000000001 21.560000000000002Q63.400000000000006 21.560000000000002 62.730000000000004 21.590000000000003Q62.06000000000001 21.62 61.720000000000006 21.64V21.22Q62.540000000000006 21.22 62.89000000000001 20.92Q63.24000000000001 20.62 63.24000000000001 19.78V13.52Q63.24000000000001 12.620000000000001 62.92000000000001 12.190000000000001Q62.60000000000001 11.76 61.720000000000006 11.76V11.34Q62.36000000000001 11.4 62.96000000000001 11.4Q63.540000000000006 11.4 64.07000000000001 11.33Q64.60000000000001 11.26 65.04 11.120000000000001V13.620000000000001Q65.26 13.040000000000001 65.67000000000002 12.450000000000001Q66.08000000000001 11.860000000000001 66.66000000000001 11.46Q67.24000000000001 11.06 67.94000000000001 11.06Z"/>
+          <path d="M16.580000000000002 33.480000000000004V33.88Q15.9 33.9 15.55 34.03Q15.200000000000001 34.16 15.080000000000002 34.51Q14.96 34.86 14.96 35.6V45.52Q14.96 46.24 15.080000000000002 46.6Q15.200000000000001 46.96 15.55 47.08Q15.9 47.2 16.580000000000002 47.24V47.64Q16.12 47.6 15.43 47.59Q14.74 47.58 14.040000000000001 47.58Q13.26 47.58 12.58 47.59Q11.9 47.6 11.48 47.64V47.24Q12.16 47.2 12.51 47.08Q12.86 46.96 12.98 46.6Q13.1 46.24 13.1 45.52V34.519999999999996L13.18 34.58L8.28 47.74H7.96L2.92 34.76V45.32Q2.92 46.04 3.05 46.45Q3.18 46.86 3.5700000000000003 47.03Q3.96 47.2 4.74 47.24V47.64Q4.38 47.6 3.8 47.59Q3.22 47.58 2.7 47.58Q2.2 47.58 1.69 47.59Q1.18 47.6 0.84 47.64V47.24Q1.52 47.2 1.87 47.03Q2.22 46.86 2.34 46.45Q2.46 46.04 2.46 45.32V35.6Q2.46 34.86 2.34 34.51Q2.22 34.16 1.87 34.03Q1.52 33.9 0.84 33.88V33.480000000000004Q1.18 33.5 1.69 33.519999999999996Q2.2 33.54 2.7 33.54Q3.14 33.54 3.6100000000000003 33.519999999999996Q4.08 33.5 4.4 33.480000000000004L8.94 45.44L8.6 45.6L13.1 33.54Q13.34 33.54 13.57 33.54Q13.8 33.54 14.040000000000001 33.54Q14.74 33.54 15.43 33.519999999999996Q16.12 33.5 16.580000000000002 33.480000000000004Z"/>
+          <path d="M27.080000000000002 37.120000000000005V45.480000000000004Q27.080000000000002 46.38 27.410000000000004 46.81Q27.740000000000002 47.24 28.6 47.24V47.660000000000004Q27.980000000000004 47.6 27.36 47.6Q26.78 47.6 26.25 47.66Q25.720000000000002 47.72 25.28 47.88V45.52Q24.78 46.82 23.87 47.370000000000005Q22.96 47.92 22.0 47.92Q21.3 47.92 20.78 47.72Q20.26 47.52 19.92 47.160000000000004Q19.540000000000003 46.76 19.400000000000002 46.120000000000005Q19.26 45.480000000000004 19.26 44.54V39.519999999999996Q19.26 38.620000000000005 18.94 38.19Q18.62 37.76 17.740000000000002 37.76V37.34Q18.380000000000003 37.4 18.98 37.4Q19.560000000000002 37.4 20.090000000000003 37.33Q20.62 37.26 21.060000000000002 37.120000000000005V44.980000000000004Q21.060000000000002 45.6 21.14 46.120000000000005Q21.220000000000002 46.64 21.540000000000003 46.96Q21.860000000000003 47.28 22.580000000000002 47.28Q23.360000000000003 47.28 23.970000000000002 46.8Q24.580000000000002 46.32 24.93 45.5Q25.28 44.68 25.28 43.660000000000004V39.519999999999996Q25.28 38.620000000000005 24.96 38.19Q24.64 37.76 23.76 37.76V37.34Q24.400000000000002 37.4 25.0 37.4Q25.580000000000002 37.4 26.11 37.33Q26.64 37.26 27.080000000000002 37.120000000000005Z"/>
+          <path d="M36.34 37.06Q37.1 37.06 37.61 37.260000000000005Q38.120000000000005 37.46 38.46 37.82Q38.84 38.22 39.0 38.82Q39.160000000000004 39.42 39.160000000000004 40.44V45.78Q39.160000000000004 46.62 39.510000000000005 46.92Q39.86 47.22 40.68000000000001 47.22V47.64Q40.34 47.62 39.64 47.59Q38.940000000000005 47.56 38.28 47.56Q37.620000000000005 47.56 36.99 47.59Q36.36 47.62 36.040000000000006 47.64V47.22Q36.760000000000005 47.22 37.06 46.92Q37.36 46.62 37.36 45.78V40.0Q37.36 39.38 37.260000000000005 38.86Q37.160000000000004 38.34 36.81 38.02Q36.46 37.7 35.74 37.7Q34.900000000000006 37.7 34.27 38.18Q33.64 38.66 33.290000000000006 39.489999999999995Q32.940000000000005 40.32 32.940000000000005 41.34V45.78Q32.940000000000005 46.62 33.24000000000001 46.92Q33.540000000000006 47.22 34.260000000000005 47.22V47.64Q33.940000000000005 47.62 33.31 47.59Q32.68 47.56 32.02 47.56Q31.360000000000003 47.56 30.660000000000004 47.59Q29.960000000000004 47.62 29.62 47.64V47.22Q30.44 47.22 30.790000000000003 46.92Q31.140000000000004 46.62 31.140000000000004 45.78V39.519999999999996Q31.140000000000004 38.620000000000005 30.820000000000004 38.19Q30.500000000000004 37.76 29.62 37.76V37.34Q30.26 37.4 30.860000000000003 37.4Q31.44 37.4 31.97 37.33Q32.5 37.26 32.940000000000005 37.120000000000005V39.480000000000004Q33.46 38.120000000000005 34.39 37.59Q35.32 37.06 36.34 37.06Z"/>
+          <path d="M50.660000000000004 31.96V45.46Q50.660000000000004 46.36 50.99000000000001 46.79Q51.32000000000001 47.22 52.18000000000001 47.22V47.64Q51.56 47.58 50.940000000000005 47.58Q50.36000000000001 47.58 49.830000000000005 47.64Q49.300000000000004 47.7 48.86000000000001 47.86V34.36Q48.86000000000001 33.46 48.540000000000006 33.03Q48.220000000000006 32.6 47.34 32.6V32.18Q47.980000000000004 32.24 48.580000000000005 32.24Q49.160000000000004 32.24 49.690000000000005 32.17Q50.220000000000006 32.1 50.660000000000004 31.96ZM46.46000000000001 37.06Q47.34 37.06 48.11 37.480000000000004Q48.88 37.9 49.14 38.92L48.88 39.120000000000005Q48.6 38.28 48.010000000000005 37.9Q47.42 37.519999999999996 46.620000000000005 37.519999999999996Q45.440000000000005 37.519999999999996 44.650000000000006 38.739999999999995Q43.86000000000001 39.96 43.88 42.5Q43.88 44.12 44.190000000000005 45.19Q44.50000000000001 46.26 45.11000000000001 46.79Q45.720000000000006 47.32 46.6 47.32Q47.440000000000005 47.32 48.120000000000005 46.6Q48.800000000000004 45.88 48.940000000000005 44.480000000000004L49.18000000000001 44.76Q49.02 46.28 48.21000000000001 47.1Q47.400000000000006 47.92 46.02 47.92Q44.78 47.92 43.85 47.32Q42.92 46.72 42.43000000000001 45.519999999999996Q41.940000000000005 44.32 41.940000000000005 42.5Q41.940000000000005 40.68 42.57000000000001 39.47Q43.2 38.26 44.230000000000004 37.66Q45.260000000000005 37.06 46.46000000000001 37.06Z"/>
+          <path d="M58.08000000000001 37.06Q59.36000000000001 37.06 60.38000000000001 37.620000000000005Q61.400000000000006 38.18 62.010000000000005 39.379999999999995Q62.620000000000005 40.58 62.620000000000005 42.5Q62.620000000000005 44.42 62.010000000000005 45.61Q61.400000000000006 46.8 60.38000000000001 47.36Q59.36000000000001 47.92 58.08000000000001 47.92Q56.82000000000001 47.92 55.790000000000006 47.36Q54.760000000000005 46.8 54.150000000000006 45.61Q53.540000000000006 44.42 53.540000000000006 42.5Q53.540000000000006 40.58 54.150000000000006 39.379999999999995Q54.760000000000005 38.18 55.790000000000006 37.620000000000005Q56.82000000000001 37.06 58.08000000000001 37.06ZM58.08000000000001 37.46Q56.94000000000001 37.46 56.21000000000001 38.64Q55.48000000000001 39.82 55.48000000000001 42.5Q55.48000000000001 45.18 56.21000000000001 46.35Q56.94000000000001 47.52 58.08000000000001 47.52Q59.220000000000006 47.52 59.95 46.35Q60.68000000000001 45.18 60.68000000000001 42.5Q60.68000000000001 39.82 59.95 38.64Q59.220000000000006 37.46 58.08000000000001 37.46Z"/>
+          </g>
+        </svg>
+      </div>
+      <div class="nm-dif3-orb nm-dif3-orb-1" aria-hidden="true"></div>
+      <div class="nm-dif3-orb nm-dif3-orb-2" aria-hidden="true"></div>
+    </div>
+
+    <!-- Coluna direita -->
+    <div class="nm-dif3-col nm-dif3-col-right">
+      <div class="nm-dif3-item reveal">
+        <span class="nm-dif3-check"><svg class="ico"><use href="#i-check"></use></svg></span>
+        <p><strong>Presença além do embarque.</strong> A gente acompanha durante e depois da viagem, constrói um histórico real &mdash; pra que cada próxima seja ainda mais a sua.</p>
+      </div>
+      <div class="nm-dif3-item reveal" data-delay="1">
+        <span class="nm-dif3-check"><svg class="ico"><use href="#i-check"></use></svg></span>
+        <p><strong>Preço transparente e justo.</strong> Sem taxas escondidas, sem surpresa no cartão. Você vê tudo o que está contratando antes de fechar qualquer coisa.</p>
+      </div>
+      <div class="nm-dif3-item reveal" data-delay="2">
+        <span class="nm-dif3-check"><svg class="ico"><use href="#i-check"></use></svg></span>
+        <p><strong>Parceiras de quem ama viajar.</strong> Somos viajantes antes de ser agentes. Cada dica e cada parceiro indicado tem a chancela de quem já esteve lá.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="nm-dif3-cta-wrap reveal">
+    <a class="nm-btn nm-btn-primary nm-btn-large" href="#cotacao">
+      Montar minha viagem <svg class="ico"><use href="#i-arrow-right"></use></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===== PROCESSO ===== -->
+<section class="nm-block nm-block-soft" id="processo">
+  <div class="nm-section-head reveal">
+    <div class="nm-eyebrow nm-eyebrow-dark">Como a gente trabalha</div>
+    <h2 class="nm-h2">Três passos.<br><em>Zero complicação.</em></h2>
+    <p class="nm-lede">Da primeira mensagem até você embarcar, a gente cuida de tudo.</p>
+  </div>
+  <div class="nm-process">
+    <div class="nm-step reveal">
+      <div class="nm-step-num">01</div>
+      <h3 class="nm-step-title">A conversa</h3>
+      <p class="nm-step-body">A primeira pergunta não é "qual o orçamento" — é "como você viaja?". Antes de qualquer proposta, a gente te entende: destinos, ritmo, o que não pode faltar e o que definitivamente não quer.</p>
+      <span class="nm-timeline-tag" style="display:block;margin-top:16px">Via WhatsApp · sem compromisso</span>
+    </div>
+    <div class="nm-step-connector" aria-hidden="true">
+      <svg class="ico" style="width:28px;height:28px"><use href="#i-arrow-right"></use></svg>
+    </div>
+    <div class="nm-step reveal" data-delay="1">
+      <div class="nm-step-num">02</div>
+      <h3 class="nm-step-title">O roteiro</h3>
+      <p class="nm-step-body">Com tudo que conversamos, a gente monta um roteiro com curadoria real — destino, hospedagem, ritmo, experiências únicas. Você lê, comenta e ajusta. A gente reescreve até estar perfeito.</p>
+      <span class="nm-timeline-tag" style="display:block;margin-top:16px">Totalmente personalizado · ajustes sem limite</span>
+    </div>
+    <div class="nm-step-connector" aria-hidden="true">
+      <svg class="ico" style="width:28px;height:28px"><use href="#i-arrow-right"></use></svg>
+    </div>
+    <div class="nm-step reveal" data-delay="2">
+      <div class="nm-step-num">03</div>
+      <h3 class="nm-step-title">A viagem</h3>
+      <p class="nm-step-body">Você embarca com a Nortear no bolso. Qualquer imprevisto, qualquer hora — tem alguém da equipe disponível. Curtir a viagem é o único trabalho que sobra pra você.</p>
+      <span class="nm-timeline-tag" style="display:block;margin-top:16px">Suporte 24h durante toda a viagem</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ROTEIROS ===== -->
+<section class="nm-block nm-block-light" id="roteiros">
+  <div class="nm-section-head reveal">
+    <div class="nm-eyebrow nm-eyebrow-dark">Roteiros recentes</div>
+    <h2 class="nm-h2">Pra inspirar —<br><em>não pra escolher.</em></h2>
+    <p class="nm-lede">Esses são alguns roteiros que a gente montou. O seu vai ser único, mas dá pra ter ideia do nosso estilo.</p>
+  </div>
+  <!-- PLACEHOLDER: trocar data-bento-bg pelas fotos reais dos roteiros -->
+  <div class="nm-bento reveal">
+    <article class="nm-bento-card"
+             data-bento-bg="assets/photo-journeys-vertical.webp"
+             data-bento-title="Lisboa &amp; Porto"
+             data-bento-badge="Europa · 10 dias"
+             data-bento-text="Bairros que ninguém indica e uma noite de fado fora do circuito turístico."
+             aria-label="Ver roteiro Lisboa e Porto">
+      <div class="nm-bento-card-img" data-bg="assets/photo-journeys-vertical.webp" style="background-position:center 18%"></div>
+      <div class="nm-bento-card-info">
+        <span class="nm-bento-badge">Europa · 10 dias</span>
+        <h3 class="nm-bento-title">Lisboa &amp; Porto</h3>
+        <p class="nm-bento-text">Bairros que ninguém indica e uma noite de fado fora do circuito turístico.</p>
+      </div>
+    </article>
+    <article class="nm-bento-card"
+             data-bento-bg="assets/photo-tropical-sunset.webp"
+             data-bento-title="Maldivas em ritmo lento"
+             data-bento-badge="Tropical · 7 dias"
+             data-bento-text="Uma ilha, sete dias, um único deck pro pôr do sol. Viajar também é ficar."
+             aria-label="Ver roteiro Maldivas">
+      <div class="nm-bento-card-img" data-bg="assets/photo-tropical-sunset.webp"></div>
+      <div class="nm-bento-card-info">
+        <span class="nm-bento-badge">Tropical · 7 dias</span>
+        <h3 class="nm-bento-title">Maldivas em ritmo lento</h3>
+        <p class="nm-bento-text">Uma ilha, sete dias, um único deck pro pôr do sol. Viajar também é ficar.</p>
+      </div>
+    </article>
+    <article class="nm-bento-card"
+             data-bento-bg="assets/photo-journeys-vertical.webp"
+             data-bento-title="Japão dos detalhes"
+             data-bento-badge="Ásia · 12 dias"
+             data-bento-text="Templos ao amanhecer, ruelas escondidas e o ritmo certo entre Tóquio e Kyoto."
+             aria-label="Ver roteiro Japão">
+      <div class="nm-bento-card-img" data-bg="assets/photo-journeys-vertical.webp" style="background-position:center 72%"></div>
+      <div class="nm-bento-card-info">
+        <span class="nm-bento-badge">Ásia · 12 dias</span>
+        <h3 class="nm-bento-title">Japão dos detalhes</h3>
+        <p class="nm-bento-text">Templos ao amanhecer, ruelas escondidas e o ritmo certo entre Tóquio e Kyoto.</p>
+      </div>
+    </article>
+    <article class="nm-bento-card"
+             data-bento-bg="assets/photo-airport-gate.webp"
+             data-bento-title="Itália do norte ao sul"
+             data-bento-badge="Itália · 5 dias"
+             data-bento-text="Milão, Florença e Roma sem virar maratona — a gente sabe onde cortar."
+             aria-label="Ver roteiro Itália">
+      <div class="nm-bento-card-img" data-bg="assets/photo-airport-gate.webp"></div>
+      <div class="nm-bento-card-info">
+        <span class="nm-bento-badge">Itália · 5 dias</span>
+        <h3 class="nm-bento-title">Itália do norte ao sul</h3>
+        <p class="nm-bento-text">Milão, Florença e Roma sem virar maratona — a gente sabe onde cortar.</p>
+      </div>
+    </article>
+    <article class="nm-bento-card"
+             data-bento-bg="assets/photo-tropical-sunset.webp"
+             data-bento-title="Caribe sem pressa"
+             data-bento-badge="Caribe · 8 dias"
+             data-bento-text="Mar transparente, all-inclusive selecionado a dedo e zero preocupação."
+             aria-label="Ver roteiro Caribe">
+      <div class="nm-bento-card-img" data-bg="assets/photo-tropical-sunset.webp" style="background-position:center 80%"></div>
+      <div class="nm-bento-card-info">
+        <span class="nm-bento-badge">Caribe · 8 dias</span>
+        <h3 class="nm-bento-title">Caribe sem pressa</h3>
+        <p class="nm-bento-text">Mar transparente, all-inclusive selecionado a dedo e zero preocupação.</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- Modal do bento gallery -->
+  <div class="nm-bento-modal" id="nm-bento-modal" role="dialog" aria-modal="true" aria-label="Visualizar roteiro">
+    <button class="nm-bento-modal-close" id="nm-bento-close" aria-label="Fechar">
+      <svg style="width:16px;height:16px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="nm-bento-modal-img">
+      <div class="nm-bento-modal-img-bg" id="nm-bento-modal-bg"></div>
+      <div class="nm-bento-modal-caption">
+        <h3 id="nm-bento-modal-title"></h3>
+        <p id="nm-bento-modal-text"></p>
+      </div>
+    </div>
+    <div class="nm-bento-modal-dock" id="nm-bento-dock"></div>
+  </div>
+
+  <div class="nm-bento-cta reveal">
+    <a href="#cotacao" class="nm-link-arrow nm-stories-link">Quero um roteiro só meu <svg class="ico"><use href="#i-arrow-right"></use></svg></a>
+  </div>
+</section>
+
+<!-- ===== DEPOIMENTOS ===== -->
+<section class="nm-block nm-block-light nm-depoimentos" id="depoimentos">
+  <div class="nm-section-head reveal">
+    <div class="nm-eyebrow nm-eyebrow-dark">O que dizem por aí</div>
+    <h2 class="nm-h2">Histórias que valem<br><em>mais que qualquer guia</em></h2>
+    <p class="nm-lede">Cada viagem conta uma história. Essas são de quem escolheu viajar com cuidado.</p>
+  </div>
+
+  <div class="nm-dep-columns">
+
+    <!-- COLUNA 1 (sempre visível) — cards 1-3 duplicados para loop -->
+    <div class="nm-dep-col">
+      <div class="nm-dep-track nm-dep-track-1">
+        <!-- PLACEHOLDER: substituir pelos depoimentos reais -->
+        <div class="nm-dep-card">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"A Luna e a Carol organizaram cada detalhe da nossa lua de mel. Chegamos e tudo estava perfeito — só surpresas boas do começo ao fim."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Mariana &amp; Thiago</div><div class="nm-dep-card-dest">Paris, França · Jun/25</div></div>
+          </div>
+        </div>
+        <div class="nm-dep-card">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"Primeira viagem internacional com os filhos e eu estava com medo de tudo dar errado. A Nortear segurou a nossa mão do início ao fim."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Rafael Souza</div><div class="nm-dep-card-dest">Orlando, EUA · Jan/25</div></div>
+          </div>
+        </div>
+        <div class="nm-dep-card">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"Nunca imaginei que poderia viajar para a Europa com o orçamento que eu tinha. Elas encontraram uma combinação incrível pra mim."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Camila Torres</div><div class="nm-dep-card-dest">Lisboa + Madri · Out/24</div></div>
+          </div>
+        </div>
+        <!-- Duplicata para loop seamless -->
+        <div class="nm-dep-card" aria-hidden="true">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"A Luna e a Carol organizaram cada detalhe da nossa lua de mel. Chegamos e tudo estava perfeito — só surpresas boas do começo ao fim."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Mariana &amp; Thiago</div><div class="nm-dep-card-dest">Paris, França · Jun/25</div></div>
+          </div>
+        </div>
+        <div class="nm-dep-card" aria-hidden="true">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"Primeira viagem internacional com os filhos e eu estava com medo de tudo dar errado. A Nortear segurou a nossa mão do início ao fim."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Rafael Souza</div><div class="nm-dep-card-dest">Orlando, EUA · Jan/25</div></div>
+          </div>
+        </div>
+        <div class="nm-dep-card" aria-hidden="true">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"Nunca imaginei que poderia viajar para a Europa com o orçamento que eu tinha. Elas encontraram uma combinação incrível pra mim."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Camila Torres</div><div class="nm-dep-card-dest">Lisboa + Madri · Out/24</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUNA 2 (visível ≥641px) — cards 4-6 duplicados para loop -->
+    <div class="nm-dep-col nm-dep-col-md">
+      <div class="nm-dep-track nm-dep-track-2">
+        <!-- PLACEHOLDER: substituir pelos depoimentos reais -->
+        <div class="nm-dep-card">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"O suporte em tempo real fez toda a diferença. Tivemos um contratempo no aeroporto e em minutos a Carol já estava resolvendo tudo."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Bruno Lima</div><div class="nm-dep-card-dest">Cancún, México · Mar/25</div></div>
+          </div>
+        </div>
+        <div class="nm-dep-card">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"Planejei minha primeira viagem solo e a Nortear me deu toda a segurança que eu precisava. Me senti acompanhada em cada passo."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Letícia Ferreira</div><div class="nm-dep-card-dest">Japão · Abr/25</div></div>
+          </div>
+        </div>
+        <div class="nm-dep-card">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"Grupo de amigos organizando viagem é sempre um pesadelo. Com a Nortear foi o oposto — cada um teve suas necessidades atendidas."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">André &amp; Priscila</div><div class="nm-dep-card-dest">Bali, Indonésia · Jul/24</div></div>
+          </div>
+        </div>
+        <!-- Duplicata para loop seamless -->
+        <div class="nm-dep-card" aria-hidden="true">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"O suporte em tempo real fez toda a diferença. Tivemos um contratempo no aeroporto e em minutos a Carol já estava resolvendo tudo."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Bruno Lima</div><div class="nm-dep-card-dest">Cancún, México · Mar/25</div></div>
+          </div>
+        </div>
+        <div class="nm-dep-card" aria-hidden="true">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"Planejei minha primeira viagem solo e a Nortear me deu toda a segurança que eu precisava. Me senti acompanhada em cada passo."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Letícia Ferreira</div><div class="nm-dep-card-dest">Japão · Abr/25</div></div>
+          </div>
+        </div>
+        <div class="nm-dep-card" aria-hidden="true">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"Grupo de amigos organizando viagem é sempre um pesadelo. Com a Nortear foi o oposto — cada um teve suas necessidades atendidas."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">André &amp; Priscila</div><div class="nm-dep-card-dest">Bali, Indonésia · Jul/24</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUNA 3 (visível ≥1024px) — cards 7-9 duplicados para loop -->
+    <div class="nm-dep-col nm-dep-col-lg">
+      <div class="nm-dep-track nm-dep-track-3">
+        <!-- PLACEHOLDER: substituir pelos depoimentos reais -->
+        <div class="nm-dep-card">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"Voltei da Itália apaixonada não só pelo país, mas pela forma como fui atendida. Já estou planejando a próxima com elas."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Fernanda Oliveira</div><div class="nm-dep-card-dest">Roma + Florença · Set/24</div></div>
+          </div>
+        </div>
+        <div class="nm-dep-card">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"Achei que viagem especial era só para quem tinha muito dinheiro. A Nortear me mostrou que dá para se sentir único dentro do orçamento certo."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Diego Mendes</div><div class="nm-dep-card-dest">Dubai, EAU · Dez/24</div></div>
+          </div>
+        </div>
+        <div class="nm-dep-card">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"Minha avó queria conhecer o exterior antes dos 80 anos. A Luna criou um roteiro especial para ela. Chorei de gratidão."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Isabela Rocha</div><div class="nm-dep-card-dest">Portugal · Fev/25</div></div>
+          </div>
+        </div>
+        <!-- Duplicata para loop seamless -->
+        <div class="nm-dep-card" aria-hidden="true">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"Voltei da Itália apaixonada não só pelo país, mas pela forma como fui atendida. Já estou planejando a próxima com elas."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Fernanda Oliveira</div><div class="nm-dep-card-dest">Roma + Florença · Set/24</div></div>
+          </div>
+        </div>
+        <div class="nm-dep-card" aria-hidden="true">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"Achei que viagem especial era só para quem tinha muito dinheiro. A Nortear me mostrou que dá para se sentir único dentro do orçamento certo."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Diego Mendes</div><div class="nm-dep-card-dest">Dubai, EAU · Dez/24</div></div>
+          </div>
+        </div>
+        <div class="nm-dep-card" aria-hidden="true">
+          <div class="nm-dep-stars"><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg><svg class="ico"><use href="#i-star"></use></svg></div>
+          <p class="nm-dep-card-quote"><em>"Minha avó queria conhecer o exterior antes dos 80 anos. A Luna criou um roteiro especial para ela. Chorei de gratidão."</em></p>
+          <div class="nm-dep-card-foot">
+            <div class="nm-dep-card-avatar" aria-hidden="true"></div>
+            <div><div class="nm-dep-card-name">Isabela Rocha</div><div class="nm-dep-card-dest">Portugal · Fev/25</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== RADAR DE MILHAS ===== -->
+<section class="nm-radar" id="radar">
+  <div class="nm-radar-inner reveal">
+    <div class="nm-radar-icon" aria-hidden="true">✈️</div>
+    <div class="nm-radar-text">
+      <div class="nm-eyebrow" style="color:var(--laranja-ambar)">Radar de Milhas</div>
+      <h2 class="nm-h2 nm-radar-h2" data-key="radar.heading" data-key-type="html">Ofertas de passagem toda semana,<br>direto no seu WhatsApp.</h2>
+      <p class="nm-radar-p" data-key="radar.texto">Sem spam, sem enrolação. Só as promoções que valem a pena — garimpadas por quem respira viagem.</p>
+    </div>
+    <a class="nm-btn nm-btn-radar nm-btn-large" href="RADAR_GROUP_URL" data-key="contatos.radar_url" data-key-type="href" target="_blank" rel="noopener">
+      <span data-key="radar.cta">Entrar no Radar de Milhas</span> <svg class="ico"><use href="#i-message-circle"></use></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===== FORMULÁRIO DE COTAÇÃO ===== -->
+<section class="nm-block nm-cotacao" id="cotacao">
+  <div class="nm-section-head reveal">
+    <div class="nm-eyebrow nm-eyebrow-dark">Solicitar cotação</div>
+    <h2 class="nm-h2">Pronta para a<br><em>viagem dos seus sonhos?</em></h2>
+    <p class="nm-lede">Leva menos de 2 minutos. Nossa consultora entra em contato em até 2 horas via WhatsApp.</p>
+  </div>
+
+  <div class="nm-form-wrap reveal">
+    <!-- Barra de progresso -->
+    <div class="nm-form-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1">
+      <div class="nm-form-step-dot active" data-step="1"><svg class="ico" style="width:13px;height:13px;stroke-width:2.5"><use href="#i-map"></use></svg></div>
+      <div class="nm-form-step-line"></div>
+      <div class="nm-form-step-dot" data-step="2"><svg class="ico" style="width:13px;height:13px;stroke-width:2.5"><use href="#i-compass"></use></svg></div>
+      <div class="nm-form-step-line"></div>
+      <div class="nm-form-step-dot" data-step="3"><svg class="ico" style="width:13px;height:13px;stroke-width:2.5"><use href="#i-heart"></use></svg></div>
+    </div>
+    <div class="nm-form-progress-labels" aria-hidden="true">
+      <span class="active">Destino</span>
+      <span>A viagem</span>
+      <span>Contato</span>
+    </div>
+
+    <form id="nmCotacaoForm" novalidate>
+      <!-- PASSO 1 -->
+      <div class="nm-form-step" data-step="1">
+        <h3 class="nm-form-step-h">Pra onde você quer ir? 🗺️</h3>
+        <div class="nm-field">
+          <label for="f-destino">Destino(s) em mente <span class="nm-req" aria-label="obrigatório">*</span></label>
+          <input id="f-destino" type="text" name="destino" placeholder="Ex: Europa, Japão, litoral do Nordeste..." required autocomplete="off">
+          <div class="nm-field-error" hidden>Por favor, informe o destino.</div>
+        </div>
+        <div class="nm-field-row">
+          <div class="nm-field">
+            <label for="f-quando">Quando você quer viajar? <span class="nm-opt">(aproximada)</span></label>
+            <input id="f-quando" type="date" name="quando" class="nm-date" aria-label="Data prevista para viajar">
+          </div>
+          <div class="nm-field">
+            <label for="f-duracao">Por quanto tempo?</label>
+            <input id="f-duracao" type="text" name="duracao" placeholder="Ex: 10 dias, 2 semanas...">
+          </div>
+        </div>
+        <div class="nm-form-nav">
+          <button type="button" class="nm-btn nm-btn-primary nm-form-next">
+            Continuar <svg class="ico"><use href="#i-arrow-right"></use></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- PASSO 2 -->
+      <div class="nm-form-step" data-step="2" hidden>
+        <h3 class="nm-form-step-h">Como vai ser a viagem? 🧳</h3>
+        <div class="nm-field">
+          <label>Tipo de viagem</label>
+          <div class="nm-radio-group">
+            <label class="nm-radio-opt"><input type="radio" name="tipo" value="Casal"><span>💑 Casal</span></label>
+            <label class="nm-radio-opt"><input type="radio" name="tipo" value="Família"><span>👨‍👩‍👧 Família</span></label>
+            <label class="nm-radio-opt"><input type="radio" name="tipo" value="Grupo"><span>👯 Grupo</span></label>
+            <label class="nm-radio-opt"><input type="radio" name="tipo" value="Solo"><span>🧍 Solo</span></label>
+          </div>
+        </div>
+        <div class="nm-field-row">
+          <div class="nm-field">
+            <label for="f-pessoas">Quantas pessoas?</label>
+            <input id="f-pessoas" type="number" name="pessoas" min="1" max="30" placeholder="Ex: 2">
+          </div>
+          <div class="nm-field">
+            <label for="f-orcamento">Orçamento estimado <span class="nm-opt">(opcional)</span></label>
+            <select id="f-orcamento" name="orcamento">
+              <option value="">Prefiro não informar agora</option>
+              <option value="Até R$ 5.000/pessoa">Até R$ 5.000 por pessoa</option>
+              <option value="R$ 5.000–R$ 10.000/pessoa">R$ 5.000 – R$ 10.000 por pessoa</option>
+              <option value="R$ 10.000–R$ 20.000/pessoa">R$ 10.000 – R$ 20.000 por pessoa</option>
+              <option value="Acima de R$ 20.000/pessoa">Acima de R$ 20.000 por pessoa</option>
+            </select>
+          </div>
+        </div>
+        <div class="nm-form-nav nm-form-nav-2">
+          <button type="button" class="nm-btn nm-btn-ghost nm-form-prev">← Voltar</button>
+          <button type="button" class="nm-btn nm-btn-primary nm-form-next">
+            Continuar <svg class="ico"><use href="#i-arrow-right"></use></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- PASSO 3 -->
+      <div class="nm-form-step" data-step="3" hidden>
+        <h3 class="nm-form-step-h">Quase lá! Como a gente fala com você? 💬</h3>
+        <div class="nm-field">
+          <label for="f-nome">Seu nome <span class="nm-req" aria-label="obrigatório">*</span></label>
+          <input id="f-nome" type="text" name="nome" placeholder="Como prefere ser chamada?" required autocomplete="name">
+          <div class="nm-field-error" hidden>Por favor, informe seu nome.</div>
+        </div>
+        <div class="nm-field-row">
+          <div class="nm-field">
+            <label for="f-whatsapp">WhatsApp <span class="nm-req" aria-label="obrigatório">*</span></label>
+            <input id="f-whatsapp" type="tel" name="whatsapp" placeholder="(XX) 9 XXXX-XXXX" required autocomplete="tel">
+            <div class="nm-field-error" hidden>Por favor, informe seu WhatsApp.</div>
+          </div>
+          <div class="nm-field">
+            <label for="f-email">E-mail <span class="nm-opt">(opcional)</span></label>
+            <input id="f-email" type="email" name="email" placeholder="seu@email.com" autocomplete="email">
+          </div>
+        </div>
+        <div class="nm-field">
+          <label for="f-horario">Melhor horário para contato</label>
+          <select id="f-horario" name="horario">
+            <option value="Manhã (8h–12h)">Manhã (8h–12h)</option>
+            <option value="Tarde (12h–18h)" selected>Tarde (12h–18h)</option>
+            <option value="Noite (18h–22h)">Noite (18h–22h)</option>
+            <option value="Qualquer horário">Qualquer horário</option>
+          </select>
+        </div>
+        <label class="nm-check-opt">
+          <input type="checkbox" name="radar" value="sim">
+          <span>Quero entrar no Radar de Milhas e receber ofertas de passagens ✈️</span>
+        </label>
+        <div class="nm-form-nav nm-form-nav-2">
+          <button type="button" class="nm-btn nm-btn-ghost nm-form-prev">← Voltar</button>
+          <button type="submit" class="nm-btn nm-btn-primary nm-btn-large nm-form-submit">
+            Enviar cotação via WhatsApp <svg class="ico"><use href="#i-message-circle"></use></svg>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===== PRINCÍPIO ===== -->
+<section class="nm-block nm-principle">
+  <div class="nm-principle-bg"></div>
+  <div class="nm-principle-inner nm-principle-stagger">
+    <div class="nm-eyebrow reveal" style="color:var(--laranja-ambar)" data-key="principio.eyebrow">O nosso propósito</div>
+    <p class="nm-principle-text reveal" data-delay="2" data-key="principio.texto" data-key-type="html">
+      Nortear é <em>cuidar</em>: a viagem começa quando você para de se preocupar e começa a só <em>viver</em>.
+    </p>
+    <a class="nm-btn nm-btn-primary nm-btn-large reveal" data-delay="3" href="#cotacao">
+      Começa a sua agora <svg class="ico"><use href="#i-arrow-right"></use></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="nm-footer" id="contato">
+  <div class="nm-footer-top">
+    <div class="nm-footer-brand">
+      <a href="#topo" class="nm-footer-logo-link" aria-label="Ir para o topo">
+        <img src="assets/logo-nortear.svg" alt="Nortear Mundo" class="nm-footer-logo-svg">
+      </a>
+      <p class="nm-footer-tag" data-key="contatos.tagline">A gente cuida do seu sonho do começo ao fim.</p>
+      <div class="nm-footer-social">
+        <a href="#" data-key="contatos.instagram_url" data-key-type="href" aria-label="Instagram"><svg class="ico"><use href="#i-camera"></use></svg></a>
+        <a data-contact target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ico"><use href="#i-message-circle"></use></svg></a>
+        <a href="mailto:oi@nortearmundo.com.br" aria-label="E-mail"><svg class="ico"><use href="#i-mail"></use></svg></a>
+      </div>
+    </div>
+    <div class="nm-footer-cols">
+      <div>
+        <div class="nm-footer-col-h">Navegar</div>
+        <a href="#sobre">Sobre a gente</a>
+        <a href="#processo">Como funciona</a>
+        <a href="#roteiros">Roteiros</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#radar">Radar de Milhas</a>
+      </div>
+      <div>
+        <div class="nm-footer-col-h">Conversar</div>
+        <a data-contact target="_blank" rel="noopener">WhatsApp</a>
+        <a href="#">Instagram · @nortearmundo</a>
+        <a href="mailto:oi@nortearmundo.com.br">oi@nortearmundo.com.br</a>
+      </div>
+      <div>
+        <div class="nm-footer-col-h">Onde estamos</div>
+        <p class="nm-footer-addr" data-key="contatos.endereco" data-key-type="html">Rio Grande do Norte · Brasil<br>Atendimento 24h durante viagens</p>
+      </div>
+    </div>
+  </div>
+  <div class="nm-footer-bot">
+    <div data-key="contatos.copyright">© 2025 Nortear Mundo · CNPJ 00.000.000/0001-00</div>
+    <div>Feito com cuidado, no Nordeste 🌊</div>
+  </div>
+</footer>
+
+<!-- Botão WhatsApp flutuante -->
+<a class="nm-fab" data-contact target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp">
+  <svg class="ico"><use href="#i-message-circle"></use></svg>
+</a>
+
+<!-- Botão voltar ao topo -->
+<a href="#topo" class="nm-fab-top" aria-label="Voltar ao topo">
+  <svg class="ico"><use href="#i-arrow-up"></use></svg>
+</a>
+
+<script src="content-loader.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* ---- Scroll restoration fix (bug da 2ª/3ª dobra ao recarregar) ---- */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.addEventListener('load', function () {
+    if (!location.hash) window.scrollTo(0, 0);
+  });
+
+  /* ---- WhatsApp links ---- */
+  var WA = "https://wa.me/5584994055713?text=" +
+           encodeURIComponent("Oi, vim pelo site e quero fazer uma cotação!");
+  document.querySelectorAll("[data-contact]").forEach(function (el) {
+    el.setAttribute("href", WA);
+  });
+
+  /* ---- Header: frosted glass ao scroll ---- */
+  var header = document.querySelector(".nm-header");
+  (function () {
+    function onScroll() {
+      header.classList.toggle("is-scrolled", window.scrollY > 60);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll(); // estado inicial
+  }());
+
+  /* ---- Bento Gallery Modal ---- */
+  (function () {
+    var _overlay, _modalBg, _modalTitle, _modalText, _dock, _closeBtn, _cards = [], _cur = 0;
+
+    function openModal(idx) {
+      _cur = idx;
+      var card = _cards[idx];
+      var bg   = card.getAttribute('data-bento-bg');
+      var img  = card.querySelector('.nm-bento-card-img');
+      var pos  = (img && img.style.backgroundPosition) || 'center';
+      _modalBg.style.backgroundImage   = 'url(' + bg + ')';
+      _modalBg.style.backgroundPosition = pos;
+      _modalTitle.textContent = card.getAttribute('data-bento-title') || '';
+      _modalText.textContent  = card.getAttribute('data-bento-text')  || '';
+      Array.from(_dock.children).forEach(function (t, i) {
+        t.classList.toggle('is-active', i === idx);
+      });
+      _overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      _overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    window.nmBentoInit = function () {
+      _overlay  = document.getElementById('nm-bento-modal');
+      if (!_overlay) return;
+      _modalBg    = document.getElementById('nm-bento-modal-bg');
+      _modalTitle = document.getElementById('nm-bento-modal-title');
+      _modalText  = document.getElementById('nm-bento-modal-text');
+      _dock       = document.getElementById('nm-bento-dock');
+      _closeBtn   = document.getElementById('nm-bento-close');
+      _cards      = Array.from(document.querySelectorAll('.nm-bento-card'));
+
+      _dock.innerHTML = '';
+      _cards.forEach(function (card, i) {
+        var bg  = card.getAttribute('data-bento-bg');
+        var img = card.querySelector('.nm-bento-card-img');
+        var pos = (img && img.style.backgroundPosition) || 'center';
+        var thumb = document.createElement('div');
+        thumb.className = 'nm-bento-thumb';
+        thumb.style.setProperty('--ti', i);
+        thumb.dataset.index = i;
+        var thumbImg = document.createElement('div');
+        thumbImg.className = 'nm-bento-thumb-img';
+        thumbImg.style.backgroundImage  = 'url(' + bg + ')';
+        thumbImg.style.backgroundPosition = pos;
+        thumb.appendChild(thumbImg);
+        thumb.addEventListener('click', function (e) {
+          e.stopPropagation();
+          openModal(parseInt(this.dataset.index, 10));
+        });
+        _dock.appendChild(thumb);
+        card.onclick = function () { openModal(i); };
+      });
+
+      if (!_overlay.dataset.init) {
+        _overlay.dataset.init = '1';
+        _closeBtn.addEventListener('click', closeModal);
+        _overlay.addEventListener('click', function (e) {
+          if (e.target === _overlay) closeModal();
+        });
+        document.addEventListener('keydown', function (e) {
+          if (!_overlay.classList.contains('is-open')) return;
+          if (e.key === 'Escape')     closeModal();
+          if (e.key === 'ArrowRight') openModal((_cur + 1) % _cards.length);
+          if (e.key === 'ArrowLeft')  openModal((_cur - 1 + _cards.length) % _cards.length);
+        });
+      }
+    };
+    window.nmBentoInit();
+
+    /* ------- remove bloco antigo abaixo (substituído acima) ------- */
+    var cards = _cards; // alias para o código legado abaixo não quebrar
+    var current = _cur;
+    var overlay = _overlay;
+    var dock    = _dock;
+    if (false) {
+
+    function openModal(idx) {
+      current = idx;
+      var card = cards[idx];
+      var bg   = card.getAttribute('data-bento-bg');
+      var img  = card.querySelector('.nm-bento-card-img');
+      var pos  = (img && img.style.backgroundPosition) || 'center';
+      modalBg.style.backgroundImage   = 'url(' + bg + ')';
+      modalBg.style.backgroundPosition = pos;
+      modalTitle.textContent = card.getAttribute('data-bento-title') || '';
+      modalText.textContent  = card.getAttribute('data-bento-text')  || '';
+      Array.from(dock.children).forEach(function (t, i) {
+        t.classList.toggle('is-active', i === idx);
+      });
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    } /* fim if(false) */
+  }());
+
+  /* ---- Voltar ao topo FAB ---- */
+  (function () {
+    var fabTop = document.querySelector(".nm-fab-top");
+    if (!fabTop) return;
+    function checkFab() { fabTop.classList.toggle("is-visible", window.scrollY > 500); }
+    window.addEventListener("scroll", checkFab, { passive: true });
+    checkFab();
+  }());
+
+  /* ---- Mobile nav ---- */
+  var toggle = document.querySelector(".nm-nav-toggle");
+  function closeNav() {
+    header.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  }
+  toggle.addEventListener("click", function () {
+    var open = header.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  document.querySelectorAll(".nm-nav a").forEach(function (a) {
+    a.addEventListener("click", closeNav);
+  });
+
+  /* ---- Scroll-reveal BIDIRECIONAL ---- */
+  var reveals = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-in");
+        } else if (e.boundingClientRect.top > 0) {
+          /* Elemento abaixo da viewport: scroll-up passou por ele → reverter */
+          e.target.classList.remove("is-in");
+        }
+        /* top ≤ 0: elemento acima da viewport (já rolou) → mantém is-in */
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add("is-in"); });
+  }
+
+  /* ---- Lazy-load background photos ---- */
+  var lazyBg = document.querySelectorAll("[data-bg]");
+  function loadBg(el) {
+    el.style.backgroundImage = "url('" + el.dataset.bg + "')";
+    el.removeAttribute("data-bg");
+  }
+  if ("IntersectionObserver" in window) {
+    var bgIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { loadBg(e.target); bgIo.unobserve(e.target); }
+      });
+    }, { rootMargin: "300px 0px" });
+    lazyBg.forEach(function (el) { bgIo.observe(el); });
+    window.__nmBgIo = bgIo;
+  } else {
+    lazyBg.forEach(loadBg);
+  }
+
+  /* ---- Hero video (carrega no load, poster cobre o LCP) ---- */
+  function loadHeroVideo() {
+    var v = document.querySelector(".nm-hero-bg[data-src]");
+    if (!v) return;
+    v.src = v.dataset.src;
+    v.removeAttribute("data-src");
+    v.load();
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+  if (document.readyState === "complete") loadHeroVideo();
+  else window.addEventListener("load", loadHeroVideo);
+
+  /* ---- Data mínima = hoje no campo de data ---- */
+  (function () {
+    var dq = document.getElementById("f-quando");
+    if (dq) dq.min = new Date().toISOString().split("T")[0];
+  }());
+
+  /* ---- Formulário multi-step → WhatsApp ---- */
+  var form = document.getElementById("nmCotacaoForm");
+  if (form) {
+    var steps  = Array.from(form.querySelectorAll(".nm-form-step"));
+    var dots   = Array.from(document.querySelectorAll(".nm-form-step-dot"));
+    var lines  = Array.from(document.querySelectorAll(".nm-form-step-line"));
+    var labels = Array.from(document.querySelectorAll(".nm-form-progress-labels span"));
+    var cur = 0;
+
+    function goTo(n) {
+      steps[cur].hidden = true;
+      cur = n;
+      steps[cur].hidden = false;
+      dots.forEach(function (d, i) {
+        d.classList.toggle("active", i === cur);
+        d.classList.toggle("done",   i < cur);
+      });
+      lines.forEach(function (l, i) { l.classList.toggle("done", i < cur); });
+      labels.forEach(function (l, i) { l.classList.toggle("active", i === cur); });
+      var section = document.getElementById("cotacao");
+      if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    form.querySelectorAll(".nm-form-next").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        /* Valida campo obrigatório do passo atual */
+        var req = steps[cur].querySelector("[required]");
+        if (req && !req.value.trim()) {
+          var err = req.nextElementSibling;
+          if (err && err.classList.contains("nm-field-error")) err.hidden = false;
+          req.focus(); return;
+        }
+        if (cur < steps.length - 1) goTo(cur + 1);
+      });
+    });
+
+    form.querySelectorAll("[required]").forEach(function (inp) {
+      inp.addEventListener("input", function () {
+        var err = inp.nextElementSibling;
+        if (err && err.classList.contains("nm-field-error")) err.hidden = true;
+      });
+    });
+
+    form.querySelectorAll(".nm-form-prev").forEach(function (btn) {
+      btn.addEventListener("click", function () { if (cur > 0) goTo(cur - 1); });
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var d = {};
+      new FormData(form).forEach(function (v, k) { d[k] = v; });
+
+      /* Formata a data (yyyy-mm-dd → dd/mm/aaaa) */
+      if (d.quando && /^\d{4}-\d{2}-\d{2}$/.test(d.quando)) {
+        var pq = d.quando.split("-");
+        d.quando = pq[2] + "/" + pq[1] + "/" + pq[0];
+      }
+
+      /* Valida passo 3 */
+      var nome = form.querySelector("#f-nome");
+      var wapp = form.querySelector("#f-whatsapp");
+      var ok = true;
+      [nome, wapp].forEach(function (f) {
+        if (!f.value.trim()) {
+          var err = f.nextElementSibling;
+          if (err && err.classList.contains("nm-field-error")) err.hidden = false;
+          ok = false;
+        }
+      });
+      if (!ok) return;
+
+      /* Monta mensagem organizada */
+      var linhas = [
+        "*NOVA COTAÇÃO — site Nortear Mundo* ✈️",
+        "",
+        "*Nome:* "     + (d.nome     || "—"),
+        "*WhatsApp:* " + (d.whatsapp || "—"),
+        "*E-mail:* "   + (d.email    || "—"),
+        "",
+        "*Destino(s):* " + (d.destino || "—"),
+        "*Quando:* "     + (d.quando  || "Flexível"),
+        "*Duração:* "    + (d.duracao || "—"),
+        "*Tipo:* "       + (d.tipo    || "—") + (d.pessoas ? " · " + d.pessoas + " pessoa(s)" : ""),
+        "*Orçamento:* "  + (d.orcamento || "Não informado"),
+        "",
+        "*Melhor horário:* " + (d.horario || "—"),
+        "*Radar de Milhas:* " + (d.radar ? "Sim ✓" : "Não"),
+      ];
+
+      /* Gancho para planilha — implementar depois */
+      // salvarLead(d);
+
+      window.open(
+        "https://wa.me/" + (window.__NM_PHONE || "5584994055713") + "?text=" + encodeURIComponent(linhas.join("\n")),
+        "_blank"
+      );
+
+      /* Feedback visual de confirmação */
+      document.querySelector(".nm-form-wrap").innerHTML =
+        '<div class="nm-form-ok">' +
+        '<svg class="ico nm-form-ok-ico"><use href="#i-check"></use></svg>' +
+        '<h3>Cotação enviada! ✈️</h3>' +
+        '<p>O WhatsApp foi aberto com todas as informações organizadas.<br>Nossa consultora entrará em contato em até 2 horas.</p>' +
+        '<a class="nm-btn nm-btn-primary" href="#topo">Voltar ao início</a>' +
+        '</div>';
+    });
+  }
+
+})();
+</script>
+</body>
+</html>

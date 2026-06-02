@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Painel Admin — Nortear Mundo</title>
+<link rel="preload" href="fonts/dmsans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/dmsans-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root {
+  --primary: #0D3B6E;
+  --primary-light: #1A5294;
+  --amber: #F5A623;
+  --sand: #F8F5EE;
+  --sand-dark: #EDE9E0;
+  --text: #1a1a2e;
+  --muted: #6b7280;
+  --border: #ddd6cc;
+  --danger: #dc2626;
+  --success: #16a34a;
+  --radius: 10px;
+  --sidebar-w: 200px;
+  --header-h: 58px;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body { font-family: var(--font-body); font-size: 14px; background: var(--sand); color: var(--text); }
+
+/* ── Overlay de senha ── */
+#pw-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+.pw-card {
+  background: #fff; border-radius: 18px;
+  padding: 40px 36px; width: 100%; max-width: 360px;
+  text-align: center; box-shadow: 0 24px 64px rgba(0,0,0,.25);
+}
+.pw-logo { width: 140px; margin-bottom: 24px; }
+.pw-title { font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+.pw-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+.pw-input {
+  width: 100%; padding: 12px 14px; border: 1.5px solid var(--border);
+  border-radius: var(--radius); font-size: 15px; font-family: inherit;
+  outline: none; transition: border-color 200ms;
+  text-align: center; letter-spacing: 4px;
+}
+.pw-input:focus { border-color: var(--amber); }
+.pw-btn {
+  margin-top: 14px; width: 100%; padding: 13px; border: none;
+  background: var(--amber); color: #fff; font-size: 15px; font-weight: 700;
+  border-radius: var(--radius); cursor: pointer; font-family: inherit;
+  transition: background 200ms;
+}
+.pw-btn:hover { background: #e09614; }
+.pw-error { margin-top: 10px; font-size: 12px; color: var(--danger); display: none; }
+
+/* ── Layout geral ── */
+#app { display: none; height: 100%; flex-direction: column; }
+#app.visible { display: flex; }
+
+.adm-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--header-h);
+  background: var(--primary); color: #fff;
+  display: flex; align-items: center; padding: 0 20px; gap: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.2);
+}
+.adm-header-logo { height: 28px; filter: brightness(0) invert(1); }
+.adm-header-title { font-size: 14px; font-weight: 600; opacity: .7; flex: 1; }
+.adm-draft-badge {
+  font-size: 11px; background: rgba(245,166,35,.25); color: var(--amber);
+  border: 1px solid rgba(245,166,35,.4); border-radius: 20px; padding: 3px 10px;
+  display: none;
+}
+.adm-draft-badge.visible { display: block; }
+.btn-download {
+  padding: 9px 18px; background: var(--amber); color: #fff;
+  border: none; border-radius: var(--radius); font-family: inherit;
+  font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap;
+  transition: background 200ms, transform 100ms;
+}
+.btn-download:hover { background: #e09614; }
+.btn-download:active { transform: scale(.97); }
+
+.adm-body { display: flex; margin-top: var(--header-h); height: calc(100vh - var(--header-h)); }
+
+/* ── Sidebar ── */
+.adm-sidebar {
+  width: var(--sidebar-w); flex-shrink: 0;
+  background: #fff; border-right: 1px solid var(--border);
+  padding: 16px 10px; overflow-y: auto;
+}
+.adm-sidebar-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+  padding: 10px 10px 6px;
+}
+.tab-btn {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; padding: 10px 12px; border: none;
+  background: transparent; border-radius: 8px; cursor: pointer;
+  font-family: inherit; font-size: 13.5px; font-weight: 500; color: var(--text);
+  text-align: left; transition: background 150ms, color 150ms;
+}
+.tab-btn:hover { background: var(--sand); }
+.tab-btn.active { background: #EBF3FF; color: var(--primary); font-weight: 700; }
+.tab-btn .ico { font-size: 15px; width: 18px; text-align: center; }
+
+/* ── Content area ── */
+.adm-content {
+  flex: 1; overflow-y: auto;
+  padding: 28px 32px; max-width: 800px;
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.section-title {
+  font-size: 18px; font-weight: 700; color: var(--primary);
+  margin-bottom: 4px;
+}
+.section-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+
+/* ── Formulários ── */
+.field-group { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.field-group.full { grid-template-columns: 1fr; }
+.field-group.trio { grid-template-columns: 1fr 1fr 1fr; }
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label {
+  font-size: 11.5px; font-weight: 600; letter-spacing: .03em;
+  text-transform: uppercase; color: var(--muted);
+}
+.field input, .field textarea, .field select {
+  padding: 10px 12px; border: 1.5px solid var(--border);
+  border-radius: 8px; font-size: 14px; font-family: inherit;
+  color: var(--text); background: #fff; outline: none;
+  transition: border-color 200ms;
+  resize: vertical;
+}
+.field input:focus, .field textarea:focus, .field select:focus {
+  border-color: var(--primary);
+}
+.field textarea { min-height: 80px; }
+.field .hint { font-size: 11px; color: var(--muted); }
+
+.img-preview {
+  margin-top: 8px; border-radius: 8px; overflow: hidden;
+  height: 120px; background: var(--sand-dark);
+  display: flex; align-items: center; justify-content: center;
+}
+.img-preview img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: none;
+}
+.img-preview .no-img {
+  font-size: 12px; color: var(--muted);
+}
+
+/* ── Cards de destino / depoimento ── */
+.item-card {
+  background: #fff; border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 18px; margin-bottom: 14px;
+  position: relative;
+}
+.item-card-head {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+}
+.item-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--primary); color: #fff;
+  font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.item-label { font-weight: 600; flex: 1; font-size: 14px; }
+.btn-remove {
+  padding: 6px 12px; background: transparent; border: 1.5px solid #fca5a5;
+  color: var(--danger); border-radius: 7px; cursor: pointer;
+  font-size: 12px; font-family: inherit; font-weight: 600;
+  transition: background 150ms;
+}
+.btn-remove:hover { background: #fef2f2; }
+.btn-move {
+  padding: 5px 9px; background: transparent; border: 1.5px solid var(--border);
+  color: var(--muted); border-radius: 7px; cursor: pointer; font-size: 13px;
+  transition: background 150ms;
+}
+.btn-move:hover { background: var(--sand); color: var(--text); }
+.btn-add {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 18px; background: transparent;
+  border: 1.5px dashed var(--border); border-radius: var(--radius);
+  width: 100%; justify-content: center; cursor: pointer;
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  font-family: inherit; transition: border-color 200ms, color 200ms;
+  margin-top: 6px;
+}
+.btn-add:hover { border-color: var(--primary); color: var(--primary); }
+
+.col-badge {
+  display: inline-flex; align-items: center;
+  font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 20px; background: #EBF3FF; color: var(--primary);
+}
+
+.adm-divider { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+
+/* ── Toast ── */
+#toast {
+  position: fixed; bottom: 24px; right: 24px;
+  background: var(--success); color: #fff;
+  padding: 12px 20px; border-radius: 10px;
+  font-size: 13px; font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
+  transform: translateY(80px); opacity: 0;
+  transition: transform 300ms, opacity 300ms;
+  z-index: 999;
+}
+#toast.show { transform: none; opacity: 1; }
+
+@media (max-width: 680px) {
+  .adm-sidebar { width: 52px; }
+  .tab-btn span { display: none; }
+  .adm-content { padding: 20px 16px; }
+  .field-group { grid-template-columns: 1fr; }
+  .field-group.trio { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Overlay senha -->
+<div id="pw-overlay">
+  <div class="pw-card">
+    <img src="assets/logo-nortear.svg" alt="Nortear Mundo" class="pw-logo">
+    <div class="pw-title">Painel Admin</div>
+    <div class="pw-sub">Digite a senha para continuar</div>
+    <input type="password" id="pw-input" class="pw-input" placeholder="••••••••" autocomplete="current-password">
+    <button id="pw-btn" class="pw-btn">Entrar</button>
+    <div id="pw-error" class="pw-error">Senha incorreta. Tente novamente.</div>
+  </div>
+</div>
+
+<!-- App principal -->
+<div id="app">
+  <header class="adm-header">
+    <img src="assets/logo-nortear.svg" alt="Nortear Mundo" class="adm-header-logo">
+    <span class="adm-header-title">Painel Admin</span>
+    <span id="draft-badge" class="adm-draft-badge">Rascunho não publicado</span>
+    <button class="btn-download" id="btn-download">&#11015; Download content.json</button>
+  </header>
+
+  <div class="adm-body">
+    <aside class="adm-sidebar">
+      <div class="adm-sidebar-label">Seções</div>
+      <button class="tab-btn active" data-tab="contatos"><span class="ico">📞</span><span>Contatos</span></button>
+      <button class="tab-btn" data-tab="hero"><span class="ico">🎬</span><span>Hero</span></button>
+      <button class="tab-btn" data-tab="sobre"><span class="ico">👩‍💼</span><span>Sobre</span></button>
+      <button class="tab-btn" data-tab="destinos"><span class="ico">🗺️</span><span>Destinos</span></button>
+      <button class="tab-btn" data-tab="depoimentos"><span class="ico">💬</span><span>Depoimentos</span></button>
+    </aside>
+
+    <main class="adm-content">
+
+      <!-- ═══ CONTATOS ═══ -->
+      <div id="tab-contatos" class="tab-panel active">
+        <div class="section-title">Contatos & Links</div>
+        <div class="section-sub">Dados de contato usados nos botões, footer e formulário do site.</div>
+        <div class="field-group">
+          <div class="field">
+            <label>WhatsApp (só números)</label>
+            <input type="text" id="c-whatsapp" placeholder="5584994055713">
+            <div class="hint">Formato internacional sem +: 5584999999999</div>
+          </div>
+          <div class="field">
+            <label>E-mail</label>
+            <input type="email" id="c-email" placeholder="oi@nortearmundo.com.br">
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>URL do Instagram</label>
+            <input type="url" id="c-instagram-url" placeholder="https://instagram.com/nortearmundo">
+          </div>
+          <div class="field">
+            <label>Label Instagram (no footer)</label>
+            <input type="text" id="c-instagram-label" placeholder="Instagram · @nortearmundo">
+          </div>
+        </div>
+        <div class="field-group full">
+          <div class="field">
+            <label>URL do grupo Radar de Milhas (WhatsApp)</label>
+            <input type="url" id="c-radar-url" placeholder="https://chat.whatsapp.com/...">
+          </div>
+        </div>
+        <hr class="adm-divider">
+        <div class="field-group">
+          <div class="field">
+            <label>CNPJ</label>
+            <input type="text" id="c-cnpj" placeholder="00.000.000/0001-00">
+          </div>
+          <div class="field">
+            <label>Cidade (onde estamos)</label>
+            <input type="text" id="c-cidade" placeholder="Rio Grande do Norte · Brasil">
+          </div>
+        </div>
+        <div class="field-group full">
+          <div class="field">
+            <label>Tagline do Footer</label>
+            <input type="text" id="c-tagline" placeholder="A gente cuida do seu sonho do começo ao fim.">
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ HERO ═══ -->
+      <div id="tab-hero" class="tab-panel">
+        <div class="section-title">Seção Hero</div>
+        <div class="section-sub">O primeiro bloco visível do site, com vídeo de fundo.</div>
+        <div class="field-group full">
+          <div class="field">
+            <label>Eyebrow (texto pequeno acima do título)</label>
+            <input type="text" id="h-eyebrow" placeholder="Agência de viagem · desde 2021 · Nordeste, Brasil">
+          </div>
+        </div>
+        <div class="field-group full">
+          <div class="field">
+            <label>Heading (título principal — use &lt;br&gt; para quebrar linha)</label>
+            <textarea id="h-heading" rows="3" placeholder="A viagem que você&lt;br&gt;sempre sonhou,&lt;br&gt;do jeitinho certo."></textarea>
+          </div>
+        </div>
+        <div class="field-group full">
+          <div class="field">
+            <label>Subtexto (aceita &lt;em&gt; para itálico)</label>
+            <textarea id="h-subtext" rows="3"></textarea>
+          </div>
+        </div>
+        <hr class="adm-divider">
+        <div class="section-sub" style="margin-bottom:14px">Benefícios (rodapé do hero)</div>
+        <div class="field-group trio">
+          <div class="field">
+            <label>Benefício 1</label>
+            <input type="text" id="h-b1" placeholder="Suporte 24h durante a viagem">
+          </div>
+          <div class="field">
+            <label>Benefício 2</label>
+            <input type="text" id="h-b2" placeholder="Roteiros 100% personalizados">
+          </div>
+          <div class="field">
+            <label>Benefício 3</label>
+            <input type="text" id="h-b3" placeholder="Atendimento humano de verdade">
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ SOBRE ═══ -->
+      <div id="tab-sobre" class="tab-panel">
+        <div class="section-title">Sobre as Fundadoras</div>
+        <div class="section-sub">Seção com a foto e história da Luna e Carol.</div>
+        <div class="field-group">
+          <div class="field">
+            <label>URL da foto</label>
+            <input type="text" id="s-foto-url" placeholder="assets/photo-socias.webp">
+            <div class="hint">Caminho relativo ou URL externa (Cloudinary etc.)</div>
+            <div class="img-preview" id="s-foto-preview">
+              <img id="s-foto-img" src="" alt="Preview">
+              <span class="no-img">Sem preview</span>
+            </div>
+          </div>
+          <div class="field">
+            <label>Alt text da foto</label>
+            <textarea id="s-foto-alt" rows="3" placeholder="Luna Carvalho e Caroline Lisboa, fundadoras..."></textarea>
+            <div style="margin-top:12px" class="field">
+              <label>Tag da foto</label>
+              <input type="text" id="s-tag" placeholder="Luna & Carol · Fundadoras">
+            </div>
+          </div>
+        </div>
+        <div class="field-group full">
+          <div class="field">
+            <label>Heading (aceita &lt;em&gt; para itálico)</label>
+            <input type="text" id="s-heading" placeholder="Duas potiguares que nunca pararam de...">
+          </div>
+        </div>
+        <div class="field-group full">
+          <div class="field">
+            <label>Parágrafo 1</label>
+            <textarea id="s-p1" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="field-group full">
+          <div class="field">
+            <label>Parágrafo 2</label>
+            <textarea id="s-p2" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="field-group full">
+          <div class="field">
+            <label>Parágrafo 3 (aceita &lt;em&gt;)</label>
+            <textarea id="s-p3" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="field-group">
+          <div class="field">
+            <label>Nome 1 (assinatura)</label>
+            <input type="text" id="s-nome1" placeholder="Luna Carvalho">
+          </div>
+          <div class="field">
+            <label>Nome 2 (assinatura)</label>
+            <input type="text" id="s-nome2" placeholder="Caroline Lisboa">
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DESTINOS ═══ -->
+      <div id="tab-destinos" class="tab-panel">
+        <div class="section-title">Destinos (Bento Gallery)</div>
+        <div class="section-sub">Cards de roteiros de inspiração. O layout bento é otimizado para <strong>5 destinos</strong>. Com 3–6 aparece em grade simples.</div>
+        <div id="destinos-list"></div>
+        <button class="btn-add" id="btn-add-destino">+ Adicionar destino</button>
+      </div>
+
+      <!-- ═══ DEPOIMENTOS ═══ -->
+      <div id="tab-depoimentos" class="tab-panel">
+        <div class="section-title">Depoimentos</div>
+        <div class="section-sub">3 colunas com scroll infinito. Coluna 2 oculta em mobile, coluna 3 oculta até 1024px.</div>
+        <div id="dep-list-1">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span class="col-badge">Coluna 1</span>
+            <span style="font-size:12px;color:var(--muted)">Sempre visível</span>
+          </div>
+        </div>
+        <button class="btn-add" data-col="1">+ Depoimento na coluna 1</button>
+        <hr class="adm-divider">
+        <div id="dep-list-2">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span class="col-badge">Coluna 2</span>
+            <span style="font-size:12px;color:var(--muted)">Visível a partir de 641px</span>
+          </div>
+        </div>
+        <button class="btn-add" data-col="2">+ Depoimento na coluna 2</button>
+        <hr class="adm-divider">
+        <div id="dep-list-3">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span class="col-badge">Coluna 3</span>
+            <span style="font-size:12px;color:var(--muted)">Visível a partir de 1024px</span>
+          </div>
+        </div>
+        <button class="btn-add" data-col="3">+ Depoimento na coluna 3</button>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<div id="toast">Rascunho salvo!</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var state = null;
+  var serverContent = null;
+  var DRAFT_KEY = 'nm_content_draft';
+  var debTimer = null;
+
+  /* ── Utilitários ─────────────────────────────────────────────────────── */
+  function esc(s) {
+    return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function toast(msg, type) {
+    var el = document.getElementById('toast');
+    el.textContent = msg || 'Salvo!';
+    el.style.background = type === 'error' ? '#dc2626' : '#16a34a';
+    el.classList.add('show');
+    setTimeout(function () { el.classList.remove('show'); }, 2600);
+  }
+
+  function showDraftBadge(show) {
+    document.getElementById('draft-badge').classList.toggle('visible', !!show);
+  }
+
+  /* ── Password ─────────────────────────────────────────────────────────── */
+  function checkPassword(input, correctPw) {
+    return input === correctPw;
+  }
+
+  function unlockApp() {
+    document.getElementById('pw-overlay').style.display = 'none';
+    document.getElementById('app').classList.add('visible');
+  }
+
+  /* ── Carregar content.json ────────────────────────────────────────────── */
+  function loadContent(cb) {
+    fetch('content.json?v=' + Date.now())
+      .then(function (r) { return r.json(); })
+      .then(function (c) {
+        serverContent = JSON.parse(JSON.stringify(c));
+        var draft = null;
+        try { draft = JSON.parse(localStorage.getItem(DRAFT_KEY)); } catch (e) {}
+        state = draft || JSON.parse(JSON.stringify(c));
+        showDraftBadge(!!draft);
+        cb(null, state);
+      })
+      .catch(function (err) { cb(err); });
+  }
+
+  /* ── Persistência ─────────────────────────────────────────────────────── */
+  function saveDraft() {
+    try {
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(state));
+      showDraftBadge(true);
+      toast('Rascunho salvo automaticamente');
+    } catch (e) {}
+  }
+
+  function scheduleSave() {
+    clearTimeout(debTimer);
+    debTimer = setTimeout(saveDraft, 600);
+  }
+
+  function downloadJSON() {
+    readFormIntoState();
+    var json = JSON.stringify(state, null, 2);
+    var blob = new Blob([json], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'content.json'; a.click();
+    URL.revokeObjectURL(url);
+    toast('content.json baixado! Faça commit para publicar.');
+  }
+
+  /* ── Leitura dos campos para state ───────────────────────────────────── */
+  function val(id) {
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+
+  function readFormIntoState() {
+    // Contatos
+    state.contatos.whatsapp        = val('c-whatsapp')       || state.contatos.whatsapp;
+    state.contatos.email           = val('c-email')          || state.contatos.email;
+    state.contatos.instagram_url   = val('c-instagram-url')  || state.contatos.instagram_url;
+    state.contatos.instagram_label = val('c-instagram-label')|| state.contatos.instagram_label;
+    state.contatos.radar_url       = val('c-radar-url')      || state.contatos.radar_url;
+    state.contatos.cnpj            = val('c-cnpj')           || state.contatos.cnpj;
+    state.contatos.cidade          = val('c-cidade')         || state.contatos.cidade;
+    state.contatos.tagline         = val('c-tagline')        || state.contatos.tagline;
+    // Hero
+    state.hero.eyebrow   = val('h-eyebrow')  || state.hero.eyebrow;
+    state.hero.heading   = val('h-heading')  || state.hero.heading;
+    state.hero.subtext   = val('h-subtext')  || state.hero.subtext;
+    state.hero.beneficio1= val('h-b1')       || state.hero.beneficio1;
+    state.hero.beneficio2= val('h-b2')       || state.hero.beneficio2;
+    state.hero.beneficio3= val('h-b3')       || state.hero.beneficio3;
+    // Sobre
+    state.sobre.foto_url  = val('s-foto-url') || state.sobre.foto_url;
+    state.sobre.foto_alt  = val('s-foto-alt') || state.sobre.foto_alt;
+    state.sobre.tag       = val('s-tag')      || state.sobre.tag;
+    state.sobre.heading   = val('s-heading')  || state.sobre.heading;
+    state.sobre.paragrafo1= val('s-p1')       || state.sobre.paragrafo1;
+    state.sobre.paragrafo2= val('s-p2')       || state.sobre.paragrafo2;
+    state.sobre.paragrafo3= val('s-p3')       || state.sobre.paragrafo3;
+    state.sobre.nome1     = val('s-nome1')    || state.sobre.nome1;
+    state.sobre.nome2     = val('s-nome2')    || state.sobre.nome2;
+    // Destinos e Depoimentos já são lidos em tempo real (via renderDestinos/renderDepoimentos)
+  }
+
+  /* ── Preenche campos com state ────────────────────────────────────────── */
+  function set(id, v) { var el = document.getElementById(id); if (el) el.value = v || ''; }
+
+  function fillForm() {
+    var c = state.contatos;
+    set('c-whatsapp', c.whatsapp); set('c-email', c.email);
+    set('c-instagram-url', c.instagram_url); set('c-instagram-label', c.instagram_label);
+    set('c-radar-url', c.radar_url); set('c-cnpj', c.cnpj);
+    set('c-cidade', c.cidade); set('c-tagline', c.tagline);
+    var h = state.hero;
+    set('h-eyebrow', h.eyebrow); set('h-heading', h.heading); set('h-subtext', h.subtext);
+    set('h-b1', h.beneficio1); set('h-b2', h.beneficio2); set('h-b3', h.beneficio3);
+    var s = state.sobre;
+    set('s-foto-url', s.foto_url); set('s-foto-alt', s.foto_alt); set('s-tag', s.tag);
+    set('s-heading', s.heading); set('s-p1', s.paragrafo1); set('s-p2', s.paragrafo2);
+    set('s-p3', s.paragrafo3); set('s-nome1', s.nome1); set('s-nome2', s.nome2);
+    updateFotoPreview(s.foto_url);
+    renderDestinosList();
+    renderDepoimentosList();
+  }
+
+  /* ── Preview de imagem ────────────────────────────────────────────────── */
+  function updateFotoPreview(url) {
+    var img = document.getElementById('s-foto-img');
+    var noImg = document.querySelector('#s-foto-preview .no-img');
+    if (!url) { img.style.display = 'none'; noImg.style.display = ''; return; }
+    img.src = url;
+    img.style.display = 'block';
+    if (noImg) noImg.style.display = 'none';
+    img.onerror = function () { img.style.display = 'none'; if (noImg) noImg.style.display = ''; };
+  }
+
+  /* ── Destinos ─────────────────────────────────────────────────────────── */
+  function renderDestinosList() {
+    var list = document.getElementById('destinos-list');
+    if (!list) return;
+    list.innerHTML = state.destinos.map(function (d, i) {
+      var posId = 'dp-' + i;
+      var thumbStyle = d.imagem_url
+        ? 'background:url(' + esc(d.imagem_url) + ') center/cover no-repeat;'
+        : 'background:var(--sand-dark);';
+      return '<div class="item-card" data-di="' + i + '">' +
+        '<div class="item-card-head">' +
+        '<span class="item-num">' + (i + 1) + '</span>' +
+        '<span class="item-label">' + esc(d.titulo || 'Sem título') + '</span>' +
+        (i > 0 ? '<button class="btn-move" data-action="move-up" data-di="' + i + '">↑</button>' : '') +
+        (i < state.destinos.length - 1 ? '<button class="btn-move" data-action="move-down" data-di="' + i + '">↓</button>' : '') +
+        '<button class="btn-remove" data-action="rm-destino" data-di="' + i + '">Remover</button>' +
+        '</div>' +
+        '<div class="field-group">' +
+        '<div class="field"><label>Título</label><input type="text" data-di="' + i + '" data-field="titulo" value="' + esc(d.titulo) + '" placeholder="Nome do destino"></div>' +
+        '<div class="field"><label>Badge (ex: Europa · 10 dias)</label><input type="text" data-di="' + i + '" data-field="badge" value="' + esc(d.badge) + '" placeholder="Região · N dias"></div>' +
+        '</div>' +
+        '<div class="field-group full"><div class="field"><label>Texto de descrição</label><textarea data-di="' + i + '" data-field="texto" rows="2" placeholder="Frase curta sobre o roteiro...">' + esc(d.texto) + '</textarea></div></div>' +
+        '<div class="field-group">' +
+        '<div class="field"><label>URL da imagem</label><input type="text" id="' + posId + '-url" data-di="' + i + '" data-field="imagem_url" value="' + esc(d.imagem_url) + '" placeholder="assets/foto.webp"><div class="hint">Caminho relativo ou URL externa</div></div>' +
+        '<div class="field"><label>Posição da imagem (CSS)</label><input type="text" data-di="' + i + '" data-field="imagem_posicao" value="' + esc(d.imagem_posicao) + '" placeholder="center 40%"><div class="hint">Ex: center top, center 30%</div></div>' +
+        '</div>' +
+        '<div style="height:90px;border-radius:8px;overflow:hidden;margin-top:2px;' + thumbStyle + '"></div>' +
+        '</div>';
+    }).join('');
+  }
+
+  function addDestino() {
+    state.destinos.push({ titulo: '', badge: '', texto: '', imagem_url: '', imagem_posicao: '' });
+    renderDestinosList();
+    scheduleSave();
+  }
+
+  /* ── Depoimentos ──────────────────────────────────────────────────────── */
+  function renderDepoimentosList() {
+    [1, 2, 3].forEach(function (col) {
+      var list = document.getElementById('dep-list-' + col);
+      if (!list) return;
+      var header = list.querySelector('div');
+      var cards = state.depoimentos.filter(function (d) { return d.coluna === col; });
+      var globalIdx = state.depoimentos.map(function (d, i) { return d.coluna === col ? i : -1; }).filter(function (x) { return x !== -1; });
+      list.innerHTML = '';
+      if (header) list.appendChild(header.cloneNode(true));
+      cards.forEach(function (d, ci) {
+        var gi = globalIdx[ci];
+        var card = document.createElement('div');
+        card.className = 'item-card';
+        card.dataset.gi = gi;
+        card.innerHTML =
+          '<div class="item-card-head">' +
+          '<span class="item-num">' + (ci + 1) + '</span>' +
+          '<span class="item-label">' + esc(d.nome || 'Depoimento') + '</span>' +
+          '<button class="btn-remove" data-action="rm-dep" data-gi="' + gi + '">Remover</button>' +
+          '</div>' +
+          '<div class="field-group full"><div class="field"><label>Depoimento</label><textarea data-gi="' + gi + '" data-field="quote" rows="3" placeholder="O que o cliente disse...">' + esc(d.quote) + '</textarea></div></div>' +
+          '<div class="field-group">' +
+          '<div class="field"><label>Nome</label><input type="text" data-gi="' + gi + '" data-field="nome" value="' + esc(d.nome) + '" placeholder="Nome do cliente"></div>' +
+          '<div class="field"><label>Destino · Data</label><input type="text" data-gi="' + gi + '" data-field="destino" value="' + esc(d.destino) + '" placeholder="Paris, França · Jun/25"></div>' +
+          '</div>';
+        list.appendChild(card);
+      });
+    });
+  }
+
+  function addDepoimento(col) {
+    state.depoimentos.push({ quote: '', nome: '', destino: '', coluna: col });
+    renderDepoimentosList();
+    scheduleSave();
+  }
+
+  /* ── Event delegation ─────────────────────────────────────────────────── */
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    var action = t.dataset.action || (t.closest ? (t.closest('[data-action]') || {}).dataset.action : null);
+    if (!action) {
+      /* Botão adicionar destino */
+      if (t.id === 'btn-add-destino') { addDestino(); return; }
+      /* Botão adicionar depoimento */
+      var col = t.dataset.col;
+      if (col && t.classList.contains('btn-add')) { addDepoimento(parseInt(col, 10)); return; }
+    }
+    var di = t.dataset.di !== undefined ? parseInt(t.dataset.di, 10) :
+             (t.closest ? parseInt((t.closest('[data-di]') || {}).dataset.di, 10) : NaN);
+    var gi = t.dataset.gi !== undefined ? parseInt(t.dataset.gi, 10) : NaN;
+    if (action === 'rm-destino' && !isNaN(di)) {
+      state.destinos.splice(di, 1);
+      renderDestinosList(); scheduleSave();
+    } else if (action === 'move-up' && !isNaN(di) && di > 0) {
+      var tmp = state.destinos[di - 1];
+      state.destinos[di - 1] = state.destinos[di];
+      state.destinos[di] = tmp;
+      renderDestinosList(); scheduleSave();
+    } else if (action === 'move-down' && !isNaN(di) && di < state.destinos.length - 1) {
+      var tmp2 = state.destinos[di];
+      state.destinos[di] = state.destinos[di + 1];
+      state.destinos[di + 1] = tmp2;
+      renderDestinosList(); scheduleSave();
+    } else if (action === 'rm-dep' && !isNaN(gi)) {
+      state.depoimentos.splice(gi, 1);
+      renderDepoimentosList(); scheduleSave();
+    }
+  });
+
+  /* Inputs nos cards de destino/depoimento */
+  document.addEventListener('input', function (e) {
+    var t = e.target;
+    var field = t.dataset.field;
+    if (!field) { scheduleSave(); return; }
+    var di = t.dataset.di !== undefined ? parseInt(t.dataset.di, 10) : NaN;
+    var gi = t.dataset.gi !== undefined ? parseInt(t.dataset.gi, 10) : NaN;
+    if (!isNaN(di) && state.destinos[di]) {
+      state.destinos[di][field] = t.value;
+      /* Atualiza label e thumbnail em tempo real */
+      var card = t.closest('.item-card');
+      if (card) {
+        var label = card.querySelector('.item-label');
+        if (label && field === 'titulo') label.textContent = t.value || 'Sem título';
+        if (field === 'imagem_url' || field === 'imagem_posicao') {
+          var thumb = card.lastElementChild;
+          var url = state.destinos[di].imagem_url;
+          var pos = state.destinos[di].imagem_posicao || 'center';
+          if (url) thumb.style.cssText = 'height:90px;border-radius:8px;overflow:hidden;margin-top:2px;background:url(' + url + ') ' + pos + '/cover no-repeat;';
+        }
+      }
+    } else if (!isNaN(gi) && state.depoimentos[gi]) {
+      state.depoimentos[gi][field] = t.value;
+      var depCard = t.closest('.item-card');
+      if (depCard && field === 'nome') {
+        var depLabel = depCard.querySelector('.item-label');
+        if (depLabel) depLabel.textContent = t.value || 'Depoimento';
+      }
+    }
+    // Atualiza preview foto sobre
+    if (t.id === 's-foto-url') updateFotoPreview(t.value);
+    scheduleSave();
+  });
+
+  /* ── Tabs ─────────────────────────────────────────────────────────────── */
+  document.querySelectorAll('.tab-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      readFormIntoState();
+      document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+      document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      var panel = document.getElementById('tab-' + btn.dataset.tab);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
+  /* ── Download ─────────────────────────────────────────────────────────── */
+  document.getElementById('btn-download').addEventListener('click', downloadJSON);
+
+  /* ── Boot ─────────────────────────────────────────────────────────────── */
+  loadContent(function (err, content) {
+    if (err) {
+      toast('Erro ao carregar content.json', 'error');
+      return;
+    }
+
+    /* Verifica senha */
+    var pw = content.meta && content.meta.senha_admin ? content.meta.senha_admin : 'nortear2025';
+    var saved = sessionStorage.getItem('nm_admin_ok');
+    if (saved === pw) {
+      fillForm();
+      unlockApp();
+    }
+
+    document.getElementById('pw-btn').addEventListener('click', function () {
+      var input = document.getElementById('pw-input').value;
+      if (checkPassword(input, pw)) {
+        sessionStorage.setItem('nm_admin_ok', pw);
+        fillForm();
+        unlockApp();
+      } else {
+        document.getElementById('pw-error').style.display = 'block';
+        document.getElementById('pw-input').value = '';
+        document.getElementById('pw-input').focus();
+      }
+    });
+
+    document.getElementById('pw-input').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') document.getElementById('pw-btn').click();
+      document.getElementById('pw-error').style.display = 'none';
+    });
+  });
+
+}());
+</script>
+</body>
+</html>

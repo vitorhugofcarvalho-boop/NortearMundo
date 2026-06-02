@@ -1,0 +1,257 @@
+/* ============================================================
+   NORTEAR MUNDO — Design System Tokens
+   colors_and_type.css
+   ============================================================
+   Use this as the single source of truth for visual foundations.
+   - Brand palette (azul-led, laranja accent)
+   - Typography scale (Playfair Display + DM Sans + DM Mono)
+   - Semantic aliases (fg, bg, h1..h6, p, mono…)
+   ============================================================ */
+
+/* Fonts load via <link rel="preconnect"> + <link rel="stylesheet"> in the document
+   <head> (parallel, non-render-blocking) instead of this serial @import. */
+
+:root {
+  /* ──────────────────────────────────────────
+     COLORS — PRIMARY (Portuguese names preserved
+     from the brandbook; English aliases below)
+     ────────────────────────────────────────── */
+  --azul-nortear:    #1A5FA8;   /* Cor dominante — confiança, horizonte */
+  --azul-profundo:   #0D3B6E;   /* Contraste e peso — âncora */
+  --azul-ceu:        #4A8FD4;   /* Gradientes, hover */
+  --azul-nevoa:      #EBF3FB;   /* Cards, inputs, separadores suaves */
+
+  --laranja-nortear: #F47C20;   /* Acento — CTAs, destaques */
+  --laranja-ambar:   #FAA95A;   /* Hover de CTAs, decorativo */
+  --laranja-suave:   #FEF0E3;   /* Fundo de copy-exemplo */
+
+  --branco-areia:    #FAFAF8;   /* Off-white — fundo padrão */
+  --cinza-claro:     #F2F1EF;   /* Cards alternados, divisores */
+  --cinza-medio:     #C8C4BE;   /* Bordas, hairlines */
+  --cinza-baunilha:  #6B6560;   /* Texto secundário */
+  --grafite:         #1C1916;   /* Texto principal (NUNCA #000) */
+
+  /* Status (sparingly used — territory ✓/✗ only) */
+  --sucesso:         #27AE60;
+  --erro:            #C0392B;
+
+  /* ──────────────────────────────────────────
+     SEMANTIC COLOR ALIASES
+     ────────────────────────────────────────── */
+  --bg:              var(--branco-areia);
+  --bg-soft:         var(--cinza-claro);
+  --bg-tint:         var(--azul-nevoa);
+  --bg-inverse:      var(--azul-profundo);
+
+  --fg:              var(--grafite);
+  --fg-muted:        var(--cinza-baunilha);
+  --fg-on-dark:      #FFFFFF;
+  --fg-on-dark-soft: rgba(255,255,255,0.65);
+  --fg-on-dark-faint:rgba(255,255,255,0.30);
+
+  --accent:          var(--laranja-nortear);
+  --accent-hover:    var(--laranja-ambar);
+  --accent-soft:     var(--laranja-suave);
+
+  --primary:         var(--azul-nortear);
+  --primary-deep:    var(--azul-profundo);
+  --primary-light:   var(--azul-ceu);
+  --primary-tint:    var(--azul-nevoa);
+
+  --border:          var(--cinza-claro);
+  --border-strong:   var(--cinza-medio);
+
+  /* Hero gradient — used on covers / capa */
+  --gradient-deep:   linear-gradient(145deg, var(--azul-profundo) 0%, var(--azul-nortear) 60%, #2A7CC7 100%);
+  --gradient-warm:   linear-gradient(135deg, var(--azul-profundo), var(--azul-nortear));
+
+  /* ──────────────────────────────────────────
+     TYPOGRAPHY — FAMILIES
+     ────────────────────────────────────────── */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body:    'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* ──────────────────────────────────────────
+     TYPE SCALE — modular, mobile-first
+     ────────────────────────────────────────── */
+  --fs-xs:   0.72rem;   /* 11.5px — mono labels, metadados */
+  --fs-sm:   0.825rem;  /* 13.2px — small body, captions */
+  --fs-base: 0.95rem;   /* 15.2px — body padrão */
+  --fs-md:   1.05rem;   /* 16.8px — body lead */
+  --fs-lg:   1.25rem;   /* 20px — subtítulos pequenos */
+  --fs-xl:   1.6rem;    /* 25.6px */
+  --fs-2xl:  2.2rem;    /* 35.2px */
+  --fs-3xl:  3rem;      /* 48px */
+  --fs-4xl:  4rem;      /* 64px */
+  --fs-5xl:  5.5rem;    /* 88px — capa / hero */
+
+  /* Line heights */
+  --lh-tight:   1.05;
+  --lh-snug:    1.2;
+  --lh-normal:  1.45;
+  --lh-relaxed: 1.7;   /* DM Sans body — sempre 1.7 */
+
+  /* Tracking */
+  --ls-tight:   -0.02em;
+  --ls-snug:    -0.01em;
+  --ls-normal:   0;
+  --ls-wide:     0.04em;
+  --ls-mono:     0.12em;   /* DM Mono labels */
+  --ls-mono-wide:0.18em;   /* Eyebrows, capa-tag */
+
+  /* ──────────────────────────────────────────
+     SPACING SCALE (4pt baseline)
+     ────────────────────────────────────────── */
+  --space-0:  0;
+  --space-1:  0.25rem;   /* 4 */
+  --space-2:  0.5rem;    /* 8 */
+  --space-3:  0.75rem;   /* 12 */
+  --space-4:  1rem;      /* 16 */
+  --space-5:  1.5rem;    /* 24 */
+  --space-6:  2rem;      /* 32 */
+  --space-7:  2.5rem;    /* 40 */
+  --space-8:  3rem;      /* 48 */
+  --space-9:  4rem;      /* 64 */
+  --space-10: 5rem;      /* 80 */
+  --space-11: 6rem;      /* 96 */
+
+  /* ──────────────────────────────────────────
+     RADII — generous, never sharp
+     ────────────────────────────────────────── */
+  --radius-xs:  4px;    /* hex swatches, badges */
+  --radius-sm:  8px;    /* inputs, copy callouts */
+  --radius-md:  10px;   /* cards default */
+  --radius-lg:  12px;   /* destaque, principio-grande */
+  --radius-xl:  20px;   /* large overlays */
+  --radius-pill: 999px;
+
+  /* ──────────────────────────────────────────
+     SHADOWS — soft, warm, never harsh
+     Tinted with the deep blue rather than neutral
+     ────────────────────────────────────────── */
+  --shadow-xs: 0 1px 2px rgba(13, 59, 110, 0.06);
+  --shadow-sm: 0 2px 8px rgba(13, 59, 110, 0.08);
+  --shadow-md: 0 8px 24px rgba(13, 59, 110, 0.10), 0 2px 6px rgba(13, 59, 110, 0.05);
+  --shadow-lg: 0 18px 48px rgba(13, 59, 110, 0.14), 0 4px 12px rgba(13, 59, 110, 0.06);
+  --shadow-focus: 0 0 0 3px rgba(244, 124, 32, 0.30);
+
+  /* ──────────────────────────────────────────
+     MOTION
+     ────────────────────────────────────────── */
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out:cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:   140ms;
+  --dur-base:   220ms;
+  --dur-slow:   420ms;
+
+  /* ──────────────────────────────────────────
+     LAYOUT TOKENS
+     ────────────────────────────────────────── */
+  --max-w-prose:    62ch;
+  --max-w-content:  1180px;
+  --max-w-wide:     1360px;
+}
+
+/* ============================================================
+   BASE RESET + ELEMENT DEFAULTS
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-relaxed);
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ============================================================
+   SEMANTIC TYPE — drop-in defaults
+   ============================================================ */
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(var(--fs-3xl), 6vw, var(--fs-5xl));
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--primary-deep);
+  margin: 0 0 var(--space-5);
+  text-wrap: balance;
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(var(--fs-xl), 3vw, var(--fs-2xl));
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-snug);
+  color: var(--primary-deep);
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-lg);
+  line-height: 1.3;
+  color: var(--primary-deep);
+  margin: 0 0 var(--space-3);
+}
+
+h4, .h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--fs-md);
+  letter-spacing: 0.01em;
+  color: var(--primary-deep);
+  margin: 0 0 var(--space-2);
+}
+
+p {
+  margin: 0 0 var(--space-4);
+  max-width: var(--max-w-prose);
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--accent); }
+
+strong, b { font-weight: 600; color: var(--fg); }
+em, i    { font-style: italic; }
+
+/* Italic Playfair for taglines / italic display */
+.italic-display {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--fg-on-dark-soft);
+}
+
+/* Mono utility — labels, eyebrows, hex codes, metadata */
+.eyebrow, .mono-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--ls-mono-wide);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+code, kbd, pre, .mono {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* Selection */
+::selection { background: var(--accent); color: #fff; }
