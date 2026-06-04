@@ -123,6 +123,12 @@ input[type="radio"], input[type="checkbox"] { cursor: pointer; }
   background-size: cover; background-position: center;
   filter: brightness(0.82) saturate(1.05);
 }
+/* Camada-base do hero: o poster como <img> (LCP). O <video> fica por cima. */
+.nm-hero-poster {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.82) saturate(1.05);
+}
 .nm-hero-overlay {
   position: absolute; inset: 0;
   background:
@@ -598,12 +604,15 @@ img, video, svg { max-width: 100%; }
   /* hero load stagger */
   .nm-hero-inner > * { opacity: 0; animation: nm-rise 900ms var(--ease-out) forwards; }
   .nm-hero .nm-eyebrow { animation-delay: 150ms; }
-  .nm-display          { animation-delay: 320ms; }
+  /* LCP: o título tem que pintar na hora. Anima só o transform (composited),
+     sem opacity:0 nem atraso — não adia a medição do LCP. */
+  .nm-display          { opacity: 1; animation: nm-rise-tf 700ms var(--ease-out) both; }
   .nm-hero-sub         { animation-delay: 500ms; }
   .nm-hero-cta         { animation-delay: 660ms; }
   .nm-hero-foot        { opacity: 0; animation: nm-rise 900ms var(--ease-out) 820ms forwards; }
 }
 @keyframes nm-rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes nm-rise-tf { from { transform: translateY(22px); } to { transform: none; } }
 
 /* slow ambient zoom on the hero video */
 @media (prefers-reduced-motion: no-preference) {

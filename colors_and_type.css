@@ -8,8 +8,8 @@
    - Semantic aliases (fg, bg, h1..h6, p, mono…)
    ============================================================ */
 
-/* Fonts load via <link rel="preconnect"> + <link rel="stylesheet"> in the document
-   <head> (parallel, non-render-blocking) instead of this serial @import. */
+/* As fontes (@font-face) e todo o CSS são inlinados no <head> do index.html
+   via build_inline_css.py — zero CSS render-blocking, zero @import serial. */
 
 :root {
   /* ──────────────────────────────────────────

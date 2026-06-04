@@ -126,7 +126,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    fetch('content.json?v=' + Date.now())
+    fetch('content.json')
       .then(function (r) { if (!r.ok) throw new Error('no content'); return r.json(); })
       .then(function (c) {
         applyKeys(c);
