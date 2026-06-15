@@ -131,6 +131,32 @@
     "texto": "Sem spam, sem enrolação. Só as promoções que valem a pena — garimpadas por quem respira viagem.",
     "cta": "Entrar no Radar de Milhas"
   },
+  "faq": [
+    {
+      "pergunta": "Como funciona o atendimento de vocês?",
+      "resposta": "A gente não vende pacote pronto. Começa entendendo o seu sonho de viagem, seu ritmo e seu orçamento, e monta um roteiro 100% pra você — da passagem aos detalhes do destino."
+    },
+    {
+      "pergunta": "Vocês cobram pra fazer a cotação?",
+      "resposta": "A primeira conversa e a cotação inicial são sem compromisso. Você só decide seguir depois de ver a proposta na mão."
+    },
+    {
+      "pergunta": "Quanto custa viajar com a Nortear?",
+      "resposta": "Não existe preço de tabela porque não existe viagem de tabela. A gente trabalha dentro do seu orçamento e busca as melhores combinações — viagem dos sonhos não é só pra quem tem muito dinheiro."
+    },
+    {
+      "pergunta": "E se acontecer um imprevisto durante a viagem?",
+      "resposta": "Você nunca está sozinho. Tem suporte humano 24h durante toda a viagem — deu ruim no aeroporto, mudou voo, qualquer coisa: a gente resolve com você em tempo real."
+    },
+    {
+      "pergunta": "Preciso ser do Rio Grande do Norte pra ser atendido?",
+      "resposta": "Não. A gente é potiguar de coração, mas atende o Brasil inteiro, 100% online."
+    },
+    {
+      "pergunta": "Como eu começo?",
+      "resposta": "Preenche o formulário aqui embaixo com o que você tem em mente. A gente te responde rapidinho pra dar o primeiro passo da sua próxima viagem."
+    }
+  ],
   "principio": {
     "eyebrow": "O nosso propósito",
     "texto": "Nortear é <em>cuidar</em>: a viagem começa quando você para de se preocupar e começa a só <em>viver</em>."
