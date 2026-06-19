@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tipografia · Novas Opções — Nortear Mundo</title>
+
+<!-- Google Fonts: todas as famílias necessárias -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
+<style>
+/* ===================================================
+   TOKENS GLOBAIS — Paleta B "Pôr do Sol Tropical"
+   =================================================== */
+:root {
+  /* Cores Paleta B */
+  --c-primary:    #1A5FA8;
+  --c-anchor:     #0C3350;
+  --c-support:    #FBE9DD;
+  --c-coral:      #FB6A3C;
+  --c-amber:      #F6A645;
+  --c-bg:         #FCF7F0;
+  --c-text:       #211A15;
+  --c-muted:      #7A6E64;
+
+  /* Dark mode vars (sobrepostas pelo toggle) */
+  --bg:           var(--c-bg);
+  --text:         var(--c-text);
+  --text-soft:    var(--c-muted);
+  --card-bg:      #fff;
+  --card-border:  rgba(12,51,80,.08);
+  --shadow:       0 8px 24px rgba(12,51,80,.10), 0 2px 6px rgba(12,51,80,.05);
+  --shadow-lg:    0 18px 48px rgba(12,51,80,.14), 0 4px 12px rgba(12,51,80,.06);
+
+  /* Tipografia tokens */
+  --font-display: 'Newsreader', Georgia, serif; /* chrome na fonte oficial; amostras sobrescrevem por painel */
+  --font-body:    'Figtree', system-ui, sans-serif;
+  --font-mono:    'Space Mono', ui-monospace, monospace;
+
+  --text-display: clamp(2.4rem, 7vw, 5rem);
+  --text-h1:      clamp(2rem, 5vw, 3.4rem);
+  --text-h2:      clamp(1.5rem, 3.5vw, 2.2rem);
+  --text-h3:      clamp(1.1rem, 2vw, 1.35rem);
+  --text-body:    clamp(1rem, 1.2vw, 1.075rem);
+  --text-caption: 0.8rem;
+  --text-eyebrow: 0.72rem;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --space-section: clamp(56px, 9vw, 100px);
+  --gutter: clamp(20px, 8%, 120px);
+  --ease: cubic-bezier(.22,1,.36,1);
+
+  /* Base size multiplier (acessibilidade) */
+  --base-scale: 1;
+}
+
+/* ===== DARK MODE ===== */
+html.dark {
+  --bg:        #121016;
+  --text:      #F0EBE4;
+  --text-soft: #9E948C;
+  --card-bg:   #1D1820;
+  --card-border: rgba(251,234,221,.08);
+  --shadow:    0 8px 24px rgba(0,0,0,.35), 0 2px 6px rgba(0,0,0,.2);
+  --shadow-lg: 0 18px 48px rgba(0,0,0,.45), 0 4px 12px rgba(0,0,0,.25);
+}
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: calc(1rem * var(--base-scale));
+  line-height: 1.7;
+  transition: background .35s var(--ease), color .35s var(--ease);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+/* ===================================================
+   STICKY CONTROLS
+   =================================================== */
+.controls-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--c-anchor);
+  padding: 10px var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 12px rgba(0,0,0,.25);
+}
+
+.controls-bar .cb-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(252,247,240,.55);
+  margin-right: 4px;
+}
+
+.toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(252,247,240,.08);
+  border: 1px solid rgba(252,247,240,.15);
+  border-radius: var(--radius-pill);
+  padding: 5px 14px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: .08em;
+  color: #FCF7F0;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.toggle-btn:hover { background: rgba(252,247,240,.16); border-color: rgba(252,247,240,.3); }
+.toggle-btn:focus-visible { outline: 2px solid var(--c-coral); outline-offset: 2px; }
+
+.toggle-btn .dot {
+  width: 30px; height: 16px;
+  background: rgba(255,255,255,.15);
+  border-radius: 99px;
+  position: relative;
+  transition: background .25s;
+  flex-shrink: 0;
+}
+.toggle-btn .dot::after {
+  content:'';
+  position: absolute;
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: #FCF7F0;
+  top: 2.5px; left: 2.5px;
+  transition: transform .25s var(--ease), background .25s;
+}
+.toggle-btn.active .dot { background: var(--c-coral); }
+.toggle-btn.active .dot::after { transform: translateX(14px); }
+
+.size-group {
+  display: inline-flex;
+  gap: 4px;
+  border: 1px solid rgba(252,247,240,.15);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  margin-left: 4px;
+}
+.size-btn {
+  background: none;
+  border: none;
+  border-radius: var(--radius-pill);
+  color: rgba(252,247,240,.65);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: .06em;
+  padding: 3px 10px;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.size-btn:hover { background: rgba(252,247,240,.1); color: #FCF7F0; }
+.size-btn.active { background: var(--c-coral); color: #fff; }
+
+/* ===================================================
+   CABEÇALHO HERO
+   =================================================== */
+.hero {
+  background: var(--c-anchor);
+  padding: clamp(56px, 9vw, 96px) var(--gutter) clamp(48px, 7vw, 80px);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 50%, rgba(251,106,60,.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 15% 30%, rgba(26,95,168,.25) 0%, transparent 70%);
+  pointer-events: none;
+  animation: heroGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes heroGlow {
+  from { opacity: .7; }
+  to   { opacity: 1; }
+}
+
+.hero-inner { position: relative; max-width: 820px; }
+
+.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: var(--text-eyebrow);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--c-coral);
+  display: block;
+  margin-bottom: 18px;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 700;
+  color: #FCF7F0;
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.hero-sub {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: rgba(252,247,240,.72);
+  max-width: 620px;
+  line-height: 1.65;
+  margin-bottom: 36px;
+}
+
+/* problema do Playfair */
+.playfair-problem {
+  background: rgba(251,106,60,.1);
+  border-left: 3px solid var(--c-coral);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 18px 22px;
+  max-width: 680px;
+}
+.playfair-problem .pp-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--c-coral);
+  margin-bottom: 8px;
+}
+.playfair-problem p {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.9rem;
+  color: rgba(252,247,240,.8);
+  line-height: 1.6;
+}
+.playfair-problem strong { color: #FCF7F0; }
+
+/* ===================================================
+   LAYOUT GERAL DOS PAINÉIS
+   =================================================== */
+.panels-section {
+  padding: clamp(48px, 7vw, 80px) var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(56px, 8vw, 96px);
+}
+
+/* ===================================================
+   CARD DE OPÇÃO
+   =================================================== */
+.option-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: box-shadow .3s var(--ease), transform .3s var(--ease);
+}
+.option-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+
+/* Cabeçalho do painel */
+.option-head {
+  background: linear-gradient(135deg, var(--c-anchor) 0%, #113f6a 100%);
+  padding: clamp(24px, 4vw, 36px) clamp(24px, 4vw, 40px);
+  color: #FCF7F0;
+}
+
+.option-num-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.option-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--c-coral);
+}
+
+.badge-rec {
+  background: var(--c-coral);
+  color: #fff;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+}
+
+.option-name {
+  font-family: 'Fraunces', Georgia, serif; /* sobrescrito por painel via classe */
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 6px;
+  color: #FCF7F0;
+}
+
+/* each panel overrides .option-name font */
+.op1 .option-name { font-family: 'Fraunces', Georgia, serif; }
+.op2 .option-name { font-family: 'Lora', Georgia, serif; }
+.op3 .option-name { font-family: 'Newsreader', Georgia, serif; }
+.op4 .option-name { font-family: 'Bricolage Grotesque', system-ui, sans-serif; }
+.op5 .option-name { font-family: 'Source Serif 4', Georgia, serif; }
+
+.option-tagline {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.9rem;
+  color: rgba(252,247,240,.65);
+  margin-bottom: 16px;
+}
+
+.font-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(252,247,240,.08);
+  border: 1px solid rgba(252,247,240,.14);
+  border-radius: var(--radius-pill);
+  padding: 3px 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: .06em;
+  color: rgba(252,247,240,.78);
+}
+.meta-pill .role {
+  color: var(--c-amber);
+  font-weight: 500;
+}
+
+.affinity-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.chip {
+  background: rgba(246,166,69,.15);
+  border: 1px solid rgba(246,166,69,.25);
+  color: var(--c-amber);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
+}
+
+.legibility-note {
+  background: rgba(251,106,60,.08);
+  border-left: 2px solid rgba(251,106,60,.5);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 10px 14px;
+  margin-top: 12px;
+}
+.legibility-note .ln-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--c-coral);
+  margin-bottom: 4px;
+}
+.legibility-note p {
+  font-size: 0.85rem;
+  color: rgba(252,247,240,.75);
+  line-height: 1.55;
+}
+
+/* Body dos painéis */
+.option-body { padding: clamp(24px, 4vw, 40px); }
+
+/* ===================================================
+   VITRINE
+   =================================================== */
+.vitrine { margin-bottom: 40px; }
+
+.vitrine-eyebrow {
+  font-size: var(--text-eyebrow);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--c-coral);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.vitrine-display {
+  font-size: var(--text-display);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.vitrine-h2 {
+  font-size: var(--text-h2);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+
+.vitrine-italic {
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  font-style: italic;
+  color: var(--text-soft);
+  line-height: 1.5;
+  max-width: 480px;
+}
+
+/* per-panel font application on vitrine */
+.op1 .vitrine-display,
+.op1 .vitrine-h2,
+.op1 .vitrine-italic {
+  font-family: 'Fraunces', Georgia, serif;
+}
+.op1 .vitrine-eyebrow { font-family: 'DM Mono', monospace; }
+
+.op2 .vitrine-display,
+.op2 .vitrine-h2,
+.op2 .vitrine-italic {
+  font-family: 'Lora', Georgia, serif;
+}
+.op2 .vitrine-eyebrow { font-family: 'IBM Plex Mono', monospace; }
+
+.op3 .vitrine-display,
+.op3 .vitrine-h2,
+.op3 .vitrine-italic {
+  font-family: 'Newsreader', Georgia, serif;
+}
+.op3 .vitrine-eyebrow { font-family: 'Space Mono', monospace; }
+
+.op4 .vitrine-display,
+.op4 .vitrine-h2 {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+}
+.op4 .vitrine-italic { font-family: 'Hanken Grotesk', system-ui, sans-serif; font-style: italic; }
+.op4 .vitrine-eyebrow { font-family: 'Space Mono', monospace; }
+
+.op5 .vitrine-display,
+.op5 .vitrine-h2,
+.op5 .vitrine-italic {
+  font-family: 'Source Serif 4', Georgia, serif;
+}
+.op5 .vitrine-eyebrow { font-family: 'IBM Plex Mono', monospace; }
+
+/* ===================================================
+   SEÇÃO DE TESTE DE LEGIBILIDADE
+   =================================================== */
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--c-coral);
+  display: block;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+/* Grade de 3 tamanhos */
+.size-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+@media (max-width: 680px) {
+  .size-grid { grid-template-columns: 1fr; }
+}
+
+.size-col {
+  background: var(--bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.size-col-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--c-coral);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.body-18 { font-size: 18px; line-height: 1.7; color: var(--text); }
+.body-16 { font-size: 16px; line-height: 1.7; color: var(--text); }
+.body-14 { font-size: 14px; line-height: 1.65; color: var(--text); }
+
+/* corpo com a fonte certa por painel */
+.op1 .body-18, .op1 .body-16, .op1 .body-14 { font-family: 'Inter', system-ui, sans-serif; }
+.op2 .body-18, .op2 .body-16, .op2 .body-14 { font-family: 'Source Sans 3', system-ui, sans-serif; }
+.op3 .body-18, .op3 .body-16, .op3 .body-14 { font-family: 'Figtree', system-ui, sans-serif; }
+.op4 .body-18, .op4 .body-16, .op4 .body-14 { font-family: 'Hanken Grotesk', system-ui, sans-serif; }
+.op5 .body-18, .op5 .body-16, .op5 .body-14 { font-family: 'Source Sans 3', system-ui, sans-serif; }
+
+/* Mini-card UI */
+.ui-card {
+  background: var(--bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.ui-card-inner { padding: 18px 20px; }
+
+.ui-card-mono {
+  font-size: 0.62rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--c-coral);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.op1 .ui-card-mono { font-family: 'DM Mono', monospace; }
+.op2 .ui-card-mono { font-family: 'IBM Plex Mono', monospace; }
+.op3 .ui-card-mono { font-family: 'Space Mono', monospace; }
+.op4 .ui-card-mono { font-family: 'Space Mono', monospace; }
+.op5 .ui-card-mono { font-family: 'IBM Plex Mono', monospace; }
+
+.ui-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+
+.op1 .ui-card-title { font-family: 'Fraunces', Georgia, serif; }
+.op2 .ui-card-title { font-family: 'Lora', Georgia, serif; }
+.op3 .ui-card-title { font-family: 'Newsreader', Georgia, serif; }
+.op4 .ui-card-title { font-family: 'Bricolage Grotesque', sans-serif; }
+.op5 .ui-card-title { font-family: 'Source Serif 4', Georgia, serif; }
+
+.ui-card-body {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-soft);
+  margin-bottom: 14px;
+}
+
+.op1 .ui-card-body { font-family: 'Inter', system-ui, sans-serif; }
+.op2 .ui-card-body { font-family: 'Source Sans 3', system-ui, sans-serif; }
+.op3 .ui-card-body { font-family: 'Figtree', system-ui, sans-serif; }
+.op4 .ui-card-body { font-family: 'Hanken Grotesk', system-ui, sans-serif; }
+.op5 .ui-card-body { font-family: 'Source Sans 3', system-ui, sans-serif; }
+
+.ui-cta-btn {
+  display: inline-block;
+  background: var(--c-coral);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+  padding: 9px 20px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  transition: background .2s, transform .2s;
+}
+.ui-cta-btn:hover { background: #e85728; transform: scale(1.03); }
+
+.op1 .ui-cta-btn { font-family: 'Inter', sans-serif; }
+.op2 .ui-cta-btn { font-family: 'Source Sans 3', sans-serif; }
+.op3 .ui-cta-btn { font-family: 'Figtree', sans-serif; }
+.op4 .ui-cta-btn { font-family: 'Hanken Grotesk', sans-serif; }
+.op5 .ui-cta-btn { font-family: 'Source Sans 3', sans-serif; }
+
+/* Escala tipográfica */
+.type-scale { margin-bottom: 32px; }
+
+.scale-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--card-border);
+}
+.scale-row:last-child { border-bottom: none; }
+
+.scale-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.scale-sample { color: var(--text); line-height: 1.2; }
+
+/* Comparativo Playfair */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 560px) {
+  .compare-grid { grid-template-columns: 1fr; }
+}
+
+.compare-col {
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  background: var(--bg);
+}
+
+.compare-col-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+.compare-col-label.atual { color: var(--text-soft); }
+.compare-col-label.nova  { color: var(--c-coral); }
+
+.compare-20 { font-size: 20px; line-height: 1.3; color: var(--text); margin-bottom: 12px; }
+.compare-15 { font-size: 15px; line-height: 1.4; color: var(--text); }
+
+.compare-col.playfair .compare-20,
+.compare-col.playfair .compare-15 {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* proposta: font aplicada via painel */
+.op1 .compare-col.proposta .compare-20,
+.op1 .compare-col.proposta .compare-15 { font-family: 'Fraunces', Georgia, serif; }
+
+.op2 .compare-col.proposta .compare-20,
+.op2 .compare-col.proposta .compare-15 { font-family: 'Lora', Georgia, serif; }
+
+.op3 .compare-col.proposta .compare-20,
+.op3 .compare-col.proposta .compare-15 { font-family: 'Newsreader', Georgia, serif; }
+
+.op4 .compare-col.proposta .compare-20,
+.op4 .compare-col.proposta .compare-15 { font-family: 'Bricolage Grotesque', sans-serif; }
+
+.op5 .compare-col.proposta .compare-20,
+.op5 .compare-col.proposta .compare-15 { font-family: 'Source Serif 4', Georgia, serif; }
+
+/* dica visual de contraste (peso Playfair em finos) */
+.compare-col.playfair {
+  border-color: rgba(122,110,100,.25);
+  opacity: .85;
+}
+.compare-col.proposta {
+  border-color: rgba(251,106,60,.3);
+}
+
+/* ===================================================
+   SEPARADOR DE SEÇÃO DENTRO DO PAINEL
+   =================================================== */
+.panel-section { margin-bottom: 36px; }
+
+/* ===================================================
+   VEREDITO FINAL
+   =================================================== */
+.verdict {
+  background: var(--c-anchor);
+  padding: clamp(48px, 7vw, 80px) var(--gutter);
+  color: #FCF7F0;
+}
+
+.verdict-inner { max-width: 820px; }
+
+.verdict-title {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: #FCF7F0;
+  margin-bottom: 8px;
+  line-height: 1.15;
+}
+
+.verdict-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: rgba(252,247,240,.65);
+  margin-bottom: 32px;
+}
+
+.verdict-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 36px; }
+@media (max-width: 620px) { .verdict-cards { grid-template-columns: 1fr; } }
+
+.verdict-card {
+  background: rgba(252,247,240,.06);
+  border: 1px solid rgba(252,247,240,.12);
+  border-radius: var(--radius-md);
+  padding: 22px;
+}
+
+.verdict-card.primary { border-color: rgba(251,106,60,.5); }
+
+.vc-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--c-coral);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.vc-name {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #FCF7F0;
+  margin-bottom: 6px;
+}
+
+.vc-body {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  color: rgba(252,247,240,.7);
+  line-height: 1.6;
+}
+
+/* Snippet CSS */
+.code-block {
+  background: #0a1e2e;
+  border: 1px solid rgba(252,247,240,.1);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+.code-block pre {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: #c8d8e8;
+  white-space: pre;
+}
+
+.code-block .tok-comment { color: #6b8fa8; font-style: italic; }
+.code-block .tok-prop    { color: #F6A645; }
+.code-block .tok-value   { color: #a8d8a8; }
+.code-block .tok-string  { color: #f0b0a0; }
+.code-block .tok-punct   { color: #8090a0; }
+
+/* ===================================================
+   SCROLL REVEAL
+   =================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s var(--ease), transform .65s var(--ease);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ===================================================
+   RESPONSIVO
+   =================================================== */
+@media (max-width: 768px) {
+  .option-head { padding: 22px 20px; }
+  .option-body { padding: 20px; }
+}
+
+/* ===================================================
+   FOOTER PEQUENO
+   =================================================== */
+.footer-bar {
+  background: #090e14;
+  text-align: center;
+  padding: 20px var(--gutter);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: .1em;
+  color: rgba(252,247,240,.3);
+}
+
+/* ===================================================
+   ESCALA: base-scale aplicada ao body de teste
+   =================================================== */
+body.scale-112 { font-size: calc(1rem * 1.12); }
+body.scale-125 { font-size: calc(1rem * 1.25); }
+</style>
+</head>
+
+<body>
+
+<!-- ===== STICKY CONTROLS ===== -->
+<nav class="controls-bar" role="navigation" aria-label="Controles de visualização">
+  <span class="cb-label">Visualização</span>
+
+  <button class="toggle-btn" id="toggleDark" aria-pressed="false" aria-label="Alternar fundo escuro">
+    <span class="dot" aria-hidden="true"></span>
+    Fundo escuro
+  </button>
+
+  <span class="cb-label" style="margin-left:8px">Tamanho</span>
+  <div class="size-group" role="group" aria-label="Tamanho da fonte">
+    <button class="size-btn active" data-scale="1" aria-pressed="true">100%</button>
+    <button class="size-btn" data-scale="1.12" aria-pressed="false">112%</button>
+    <button class="size-btn" data-scale="1.25" aria-pressed="false">125%</button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" role="banner">
+  <div class="hero-inner">
+    <span class="eyebrow">Nortear Mundo · Sistema Tipográfico</span>
+    <h1 class="hero-title">Tipografia · Novas Opções</h1>
+    <p class="hero-sub">
+      Cinco pares tipográficos avaliados pelo critério que importa: <strong style="color:#FCF7F0">legibilidade em tela em todos os tamanhos</strong> — sem abrir mão da alma editorial da Nortear e da etiqueta mono "boarding pass". Cada opção vem com teste de corpo em 18/16/14px, mini-card de interface e comparativo direto com o Playfair atual.
+    </p>
+    <div class="playfair-problem">
+      <div class="pp-title">O problema do Playfair atual</div>
+      <p>
+        O Playfair Display é uma serif de <strong>contraste de traço extremo</strong> — belíssima em display grande, mas a partir de ~24px pra baixo os traços finos quebram em telas comuns (densidade 1×). Não tem eixo óptico: o mesmo desenho frágil é usado em todo tamanho. Em corpo de site (14–18px) isso prejudica leitura e acessibilidade. As opções abaixo resolvem esse ponto na raiz.
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- ===== PAINÉIS ===== -->
+<main class="panels-section">
+
+  <!-- ============================================================
+       OPÇÃO 1 — Editorial Legível · Fraunces + Inter + DM Mono ★
+       ============================================================ -->
+  <article class="option-card op1 reveal" aria-label="Opção 1: Editorial Legível">
+    <div class="option-head">
+      <div class="option-num-row">
+        <span class="option-num">Opção 01</span>
+        <span class="badge-rec">★ Recomendada</span>
+      </div>
+      <h2 class="option-name">"Editorial Legível"</h2>
+      <p class="option-tagline">Fraunces + Inter + DM Mono — a evolução natural, não a ruptura</p>
+      <div class="font-meta">
+        <span class="meta-pill"><span class="role">Display</span> Fraunces 500/600/900</span>
+        <span class="meta-pill"><span class="role">Corpo</span> Inter 400/500/600</span>
+        <span class="meta-pill"><span class="role">Etiqueta</span> DM Mono 500</span>
+      </div>
+      <div class="affinity-chips">
+        <span class="chip">Paleta B</span>
+        <span class="chip">Paleta A</span>
+      </div>
+      <div class="legibility-note">
+        <div class="ln-label">Por que é legível</div>
+        <p>Fraunces tem <strong style="color:#FCF7F0">eixo óptico (opsz)</strong> — em tamanhos menores os traços finos engrossam automaticamente, exatamente onde o Playfair falha. Inter é o benchmark de leitura em UI/tela (x-height alto, formas abertas). Mantém serif editorial + mono = evolução, não ruptura.</p>
+      </div>
+    </div>
+
+    <div class="option-body">
+
+      <!-- Vitrine -->
+      <div class="vitrine panel-section">
+        <span class="section-label">Vitrine tipográfica</span>
+        <span class="vitrine-eyebrow">Radar de Milhas · Nortear Mundo</span>
+        <p class="vitrine-display">Viaje mais.<br>Gaste menos.</p>
+        <h3 class="vitrine-h2">A gente cuida do seu sonho.</h3>
+        <p class="vitrine-italic">a viagem começa quando você para de se preocupar</p>
+      </div>
+
+      <!-- Teste de legibilidade -->
+      <div class="panel-section">
+        <span class="section-label">Teste de legibilidade — mesmo parágrafo em 3 tamanhos</span>
+        <div class="size-grid">
+          <div class="size-col">
+            <span class="size-col-label">18px · confortável</span>
+            <p class="body-18">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+          <div class="size-col">
+            <span class="size-col-label">16px · padrão web</span>
+            <p class="body-16">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+          <div class="size-col">
+            <span class="size-col-label">14px · denso / mobile</span>
+            <p class="body-14">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini-card UI -->
+      <div class="panel-section">
+        <span class="section-label">Amostra de UI — contexto real de interface</span>
+        <div class="ui-card">
+          <div class="ui-card-inner">
+            <span class="ui-card-mono">Oferta · Radar de Milhas</span>
+            <h4 class="ui-card-title">Fortaleza → Lisboa por 28.000 milhas</h4>
+            <p class="ui-card-body">Janela aberta até sexta-feira. Disponível em Smiles e Latam Pass. Ida e volta, econômica. Verifique a disponibilidade de datas antes de resgatar — a gente já checou as melhores janelas pra você.</p>
+            <a href="#" class="ui-cta-btn" aria-label="Entrar no grupo Radar de Milhas">Quero essa oferta</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Escala tipográfica -->
+      <div class="panel-section">
+        <span class="section-label">Escala completa</span>
+        <div class="type-scale">
+          <div class="scale-row">
+            <span class="scale-label">Display · 64px</span>
+            <span class="scale-sample" style="font-family:'Fraunces',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:900">Nortear</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H1 · 48px</span>
+            <span class="scale-sample" style="font-family:'Fraunces',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700">Viaje mais, gaste menos</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H2 · 32px</span>
+            <span class="scale-sample" style="font-family:'Fraunces',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600">Como funciona o Radar</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H3 · 22px</span>
+            <span class="scale-sample" style="font-family:'Fraunces',serif;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:500">Curadoria humana, sem spam</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Corpo · 17px</span>
+            <span class="scale-sample" style="font-family:'Inter',sans-serif;font-size:17px;font-weight:400">A gente não vende pacote. A gente cuida do seu sonho.</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Caption · 13px</span>
+            <span class="scale-sample" style="font-family:'Inter',sans-serif;font-size:13px;color:var(--text-soft)">Feito com cuidado, no Nordeste · @nortearmundo</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Mono · 11px</span>
+            <span class="scale-sample" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--c-coral)">Radar de Milhas · Grupo WhatsApp</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparativo -->
+      <div class="panel-section">
+        <span class="section-label">Comparativo direto com o Playfair atual</span>
+        <div class="compare-grid">
+          <div class="compare-col playfair">
+            <span class="compare-col-label atual">Atual — Playfair Display</span>
+            <p class="compare-20">Ofertas de milhas selecionadas a dedo</p>
+            <p class="compare-15">Ofertas de milhas selecionadas a dedo — os traços finos somem neste tamanho</p>
+          </div>
+          <div class="compare-col proposta">
+            <span class="compare-col-label nova">Proposta — Fraunces (opsz ativo)</span>
+            <p class="compare-20">Ofertas de milhas selecionadas a dedo</p>
+            <p class="compare-15">Ofertas de milhas selecionadas a dedo — eixo óptico mantém os traços sólidos</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ============================================================
+       OPÇÃO 2 — Calor de Leitura · Lora + Source Sans 3 + IBM Plex Mono
+       ============================================================ -->
+  <article class="option-card op2 reveal" aria-label="Opção 2: Calor de Leitura">
+    <div class="option-head">
+      <div class="option-num-row">
+        <span class="option-num">Opção 02</span>
+      </div>
+      <h2 class="option-name">"Calor de Leitura"</h2>
+      <p class="option-tagline">Lora + Source Sans 3 + IBM Plex Mono — a mais à prova de falhas</p>
+      <div class="font-meta">
+        <span class="meta-pill"><span class="role">Display</span> Lora 500/600/700</span>
+        <span class="meta-pill"><span class="role">Corpo</span> Source Sans 3 400/600</span>
+        <span class="meta-pill"><span class="role">Etiqueta</span> IBM Plex Mono</span>
+      </div>
+      <div class="affinity-chips">
+        <span class="chip">Paleta A</span>
+        <span class="chip">Paleta B</span>
+      </div>
+      <div class="legibility-note">
+        <div class="ln-label">Por que é legível</div>
+        <p>Lora é serif de <strong style="color:#FCF7F0">contraste moderado</strong> desenhada para tela, curvas "brushed" calorosas; funciona de display a corpo sem quebrar. Source Sans 3 tem legibilidade impecável. A opção mais à prova de falhas em qualquer tamanho e densidade de tela.</p>
+      </div>
+    </div>
+
+    <div class="option-body">
+      <div class="vitrine panel-section">
+        <span class="section-label">Vitrine tipográfica</span>
+        <span class="vitrine-eyebrow">Radar de Milhas · Nortear Mundo</span>
+        <p class="vitrine-display">Viaje mais.<br>Gaste menos.</p>
+        <h3 class="vitrine-h2">A gente cuida do seu sonho.</h3>
+        <p class="vitrine-italic">a viagem começa quando você para de se preocupar</p>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Teste de legibilidade — mesmo parágrafo em 3 tamanhos</span>
+        <div class="size-grid">
+          <div class="size-col">
+            <span class="size-col-label">18px · confortável</span>
+            <p class="body-18">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+          <div class="size-col">
+            <span class="size-col-label">16px · padrão web</span>
+            <p class="body-16">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+          <div class="size-col">
+            <span class="size-col-label">14px · denso / mobile</span>
+            <p class="body-14">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Amostra de UI — contexto real de interface</span>
+        <div class="ui-card">
+          <div class="ui-card-inner">
+            <span class="ui-card-mono">Oferta · Radar de Milhas</span>
+            <h4 class="ui-card-title">Fortaleza → Lisboa por 28.000 milhas</h4>
+            <p class="ui-card-body">Janela aberta até sexta-feira. Disponível em Smiles e Latam Pass. Ida e volta, econômica. Verifique a disponibilidade de datas antes de resgatar — a gente já checou as melhores janelas pra você.</p>
+            <a href="#" class="ui-cta-btn">Quero essa oferta</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Escala completa</span>
+        <div class="type-scale">
+          <div class="scale-row">
+            <span class="scale-label">Display · 64px</span>
+            <span class="scale-sample" style="font-family:'Lora',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:700">Nortear</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H1 · 48px</span>
+            <span class="scale-sample" style="font-family:'Lora',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700">Viaje mais, gaste menos</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H2 · 32px</span>
+            <span class="scale-sample" style="font-family:'Lora',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600">Como funciona o Radar</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H3 · 22px</span>
+            <span class="scale-sample" style="font-family:'Lora',serif;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:500">Curadoria humana, sem spam</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Corpo · 17px</span>
+            <span class="scale-sample" style="font-family:'Source Sans 3',sans-serif;font-size:17px;font-weight:400">A gente não vende pacote. A gente cuida do seu sonho.</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Caption · 13px</span>
+            <span class="scale-sample" style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--text-soft)">Feito com cuidado, no Nordeste · @nortearmundo</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Mono · 11px</span>
+            <span class="scale-sample" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--c-coral)">Radar de Milhas · Grupo WhatsApp</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Comparativo direto com o Playfair atual</span>
+        <div class="compare-grid">
+          <div class="compare-col playfair">
+            <span class="compare-col-label atual">Atual — Playfair Display</span>
+            <p class="compare-20">Ofertas de milhas selecionadas a dedo</p>
+            <p class="compare-15">Ofertas de milhas selecionadas a dedo — traços finos frágeis neste tamanho</p>
+          </div>
+          <div class="compare-col proposta">
+            <span class="compare-col-label nova">Proposta — Lora (contraste moderado)</span>
+            <p class="compare-20">Ofertas de milhas selecionadas a dedo</p>
+            <p class="compare-15">Ofertas de milhas selecionadas a dedo — contraste contido, leitura sólida</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============================================================
+       OPÇÃO 3 — Notícia Calorosa · Newsreader + Figtree + Space Mono
+       ============================================================ -->
+  <article class="option-card op3 reveal" aria-label="Opção 3: Notícia Calorosa">
+    <div class="option-head">
+      <div class="option-num-row">
+        <span class="option-num">Opção 03</span>
+      </div>
+      <h2 class="option-name">"Notícia Calorosa"</h2>
+      <p class="option-tagline">Newsreader + Figtree + Space Mono — editorial-jornalístico contemporâneo</p>
+      <div class="font-meta">
+        <span class="meta-pill"><span class="role">Display</span> Newsreader 400/500/600</span>
+        <span class="meta-pill"><span class="role">Corpo</span> Figtree 400/500/600</span>
+        <span class="meta-pill"><span class="role">Etiqueta</span> Space Mono</span>
+      </div>
+      <div class="affinity-chips">
+        <span class="chip">Paleta B</span>
+        <span class="chip">Paleta C</span>
+      </div>
+      <div class="legibility-note">
+        <div class="ln-label">Por que é legível</div>
+        <p>Newsreader é serif feita para <strong style="color:#FCF7F0">leitura em tela</strong> (Production Type); seus itálicos expressivos servem perfeitamente ao itálico de confidência da Nortear. Figtree é humanista geométrica, clara e amigável. Tom editorial-jornalístico contemporâneo.</p>
+      </div>
+    </div>
+
+    <div class="option-body">
+      <div class="vitrine panel-section">
+        <span class="section-label">Vitrine tipográfica</span>
+        <span class="vitrine-eyebrow">Radar de Milhas · Nortear Mundo</span>
+        <p class="vitrine-display">Viaje mais.<br>Gaste menos.</p>
+        <h3 class="vitrine-h2">A gente cuida do seu sonho.</h3>
+        <p class="vitrine-italic">a viagem começa quando você para de se preocupar</p>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Teste de legibilidade — mesmo parágrafo em 3 tamanhos</span>
+        <div class="size-grid">
+          <div class="size-col">
+            <span class="size-col-label">18px · confortável</span>
+            <p class="body-18">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+          <div class="size-col">
+            <span class="size-col-label">16px · padrão web</span>
+            <p class="body-16">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+          <div class="size-col">
+            <span class="size-col-label">14px · denso / mobile</span>
+            <p class="body-14">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Amostra de UI — contexto real de interface</span>
+        <div class="ui-card">
+          <div class="ui-card-inner">
+            <span class="ui-card-mono">Oferta · Radar de Milhas</span>
+            <h4 class="ui-card-title">Fortaleza → Lisboa por 28.000 milhas</h4>
+            <p class="ui-card-body">Janela aberta até sexta-feira. Disponível em Smiles e Latam Pass. Ida e volta, econômica. Verifique a disponibilidade de datas antes de resgatar — a gente já checou as melhores janelas pra você.</p>
+            <a href="#" class="ui-cta-btn">Quero essa oferta</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Escala completa</span>
+        <div class="type-scale">
+          <div class="scale-row">
+            <span class="scale-label">Display · 64px</span>
+            <span class="scale-sample" style="font-family:'Newsreader',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:600">Nortear</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H1 · 48px</span>
+            <span class="scale-sample" style="font-family:'Newsreader',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:600">Viaje mais, gaste menos</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H2 · 32px</span>
+            <span class="scale-sample" style="font-family:'Newsreader',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:500">Como funciona o Radar</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H3 · 22px</span>
+            <span class="scale-sample" style="font-family:'Newsreader',serif;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:400;font-style:italic">Curadoria humana, sem spam</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Corpo · 17px</span>
+            <span class="scale-sample" style="font-family:'Figtree',sans-serif;font-size:17px;font-weight:400">A gente não vende pacote. A gente cuida do seu sonho.</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Caption · 13px</span>
+            <span class="scale-sample" style="font-family:'Figtree',sans-serif;font-size:13px;color:var(--text-soft)">Feito com cuidado, no Nordeste · @nortearmundo</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Mono · 11px</span>
+            <span class="scale-sample" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--c-coral)">Radar de Milhas · Grupo WhatsApp</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Comparativo direto com o Playfair atual</span>
+        <div class="compare-grid">
+          <div class="compare-col playfair">
+            <span class="compare-col-label atual">Atual — Playfair Display</span>
+            <p class="compare-20">Ofertas de milhas selecionadas a dedo</p>
+            <p class="compare-15">Ofertas de milhas selecionadas a dedo — traços finos frágeis neste tamanho</p>
+          </div>
+          <div class="compare-col proposta">
+            <span class="compare-col-label nova">Proposta — Newsreader (feita p/ tela)</span>
+            <p class="compare-20">Ofertas de milhas selecionadas a dedo</p>
+            <p class="compare-15">Ofertas de milhas selecionadas a dedo — serif projetada para tela, firme em 15px</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============================================================
+       OPÇÃO 4 — Grotesco Caloroso · Bricolage Grotesque + Hanken Grotesk + Space Mono
+       ============================================================ -->
+  <article class="option-card op4 reveal" aria-label="Opção 4: Grotesco Caloroso">
+    <div class="option-head">
+      <div class="option-num-row">
+        <span class="option-num">Opção 04</span>
+      </div>
+      <h2 class="option-name">"Grotesco Caloroso"</h2>
+      <p class="option-tagline">Bricolage Grotesque + Hanken Grotesk + Space Mono — legibilidade máxima, ar moderno</p>
+      <div class="font-meta">
+        <span class="meta-pill"><span class="role">Display</span> Bricolage Grotesque 500/700/800</span>
+        <span class="meta-pill"><span class="role">Corpo</span> Hanken Grotesk 400/500/600</span>
+        <span class="meta-pill"><span class="role">Etiqueta</span> Space Mono</span>
+      </div>
+      <div class="affinity-chips">
+        <span class="chip">Paleta B</span>
+        <span class="chip">Paleta D</span>
+      </div>
+      <div class="legibility-note">
+        <div class="ln-label">Por que é legível</div>
+        <p>Abandona a serif → <strong style="color:#FCF7F0">legibilidade máxima</strong> e ar moderno. Bricolage tem personalidade (não é grotesca genérica); Hanken Grotesk é altamente legível em corpo. Mantém o mono pro toque técnico de viagem. Para quem quer romper com a serif e mirar público jovem (caçador de milhas).</p>
+      </div>
+    </div>
+
+    <div class="option-body">
+      <div class="vitrine panel-section">
+        <span class="section-label">Vitrine tipográfica</span>
+        <span class="vitrine-eyebrow">Radar de Milhas · Nortear Mundo</span>
+        <p class="vitrine-display">Viaje mais.<br>Gaste menos.</p>
+        <h3 class="vitrine-h2">A gente cuida do seu sonho.</h3>
+        <p class="vitrine-italic">a viagem começa quando você para de se preocupar</p>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Teste de legibilidade — mesmo parágrafo em 3 tamanhos</span>
+        <div class="size-grid">
+          <div class="size-col">
+            <span class="size-col-label">18px · confortável</span>
+            <p class="body-18">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+          <div class="size-col">
+            <span class="size-col-label">16px · padrão web</span>
+            <p class="body-16">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+          <div class="size-col">
+            <span class="size-col-label">14px · denso / mobile</span>
+            <p class="body-14">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Amostra de UI — contexto real de interface</span>
+        <div class="ui-card">
+          <div class="ui-card-inner">
+            <span class="ui-card-mono">Oferta · Radar de Milhas</span>
+            <h4 class="ui-card-title">Fortaleza → Lisboa por 28.000 milhas</h4>
+            <p class="ui-card-body">Janela aberta até sexta-feira. Disponível em Smiles e Latam Pass. Ida e volta, econômica. Verifique a disponibilidade de datas antes de resgatar — a gente já checou as melhores janelas pra você.</p>
+            <a href="#" class="ui-cta-btn">Quero essa oferta</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Escala completa</span>
+        <div class="type-scale">
+          <div class="scale-row">
+            <span class="scale-label">Display · 64px</span>
+            <span class="scale-sample" style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:800">Nortear</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H1 · 48px</span>
+            <span class="scale-sample" style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700">Viaje mais, gaste menos</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H2 · 32px</span>
+            <span class="scale-sample" style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600">Como funciona o Radar</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H3 · 22px</span>
+            <span class="scale-sample" style="font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:500">Curadoria humana, sem spam</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Corpo · 17px</span>
+            <span class="scale-sample" style="font-family:'Hanken Grotesk',sans-serif;font-size:17px;font-weight:400">A gente não vende pacote. A gente cuida do seu sonho.</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Caption · 13px</span>
+            <span class="scale-sample" style="font-family:'Hanken Grotesk',sans-serif;font-size:13px;color:var(--text-soft)">Feito com cuidado, no Nordeste · @nortearmundo</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Mono · 11px</span>
+            <span class="scale-sample" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--c-coral)">Radar de Milhas · Grupo WhatsApp</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Comparativo direto com o Playfair atual</span>
+        <div class="compare-grid">
+          <div class="compare-col playfair">
+            <span class="compare-col-label atual">Atual — Playfair Display (serif)</span>
+            <p class="compare-20">Ofertas de milhas selecionadas a dedo</p>
+            <p class="compare-15">Ofertas de milhas selecionadas a dedo — traços finos frágeis neste tamanho</p>
+          </div>
+          <div class="compare-col proposta">
+            <span class="compare-col-label nova">Proposta — Bricolage Grotesque (sans)</span>
+            <p class="compare-20">Ofertas de milhas selecionadas a dedo</p>
+            <p class="compare-15">Ofertas de milhas selecionadas a dedo — sem serifas, máxima clareza em qualquer tamanho</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============================================================
+       OPÇÃO 5 — Sistema Coeso · Source Serif 4 + Source Sans 3 + IBM Plex Mono
+       ============================================================ -->
+  <article class="option-card op5 reveal" aria-label="Opção 5: Sistema Coeso">
+    <div class="option-head">
+      <div class="option-num-row">
+        <span class="option-num">Opção 05</span>
+      </div>
+      <h2 class="option-name">"Sistema Coeso"</h2>
+      <p class="option-tagline">Source Serif 4 + Source Sans 3 + IBM Plex Mono — harmonia automática, legibilidade de referência</p>
+      <div class="font-meta">
+        <span class="meta-pill"><span class="role">Display</span> Source Serif 4 500/600/700</span>
+        <span class="meta-pill"><span class="role">Corpo</span> Source Sans 3 400/600</span>
+        <span class="meta-pill"><span class="role">Etiqueta</span> IBM Plex Mono</span>
+      </div>
+      <div class="affinity-chips">
+        <span class="chip">Paleta A</span>
+        <span class="chip">Paleta C</span>
+      </div>
+      <div class="legibility-note">
+        <div class="ln-label">Por que é legível</div>
+        <p>Superfamília Adobe → harmonia automática serif↔sans e <strong style="color:#FCF7F0">legibilidade de referência</strong> em tela. Source Serif 4 tem contraste contido (não quebra). Sóbrio, confiável, "sistema" — menos decisão, mais coerência.</p>
+      </div>
+    </div>
+
+    <div class="option-body">
+      <div class="vitrine panel-section">
+        <span class="section-label">Vitrine tipográfica</span>
+        <span class="vitrine-eyebrow">Radar de Milhas · Nortear Mundo</span>
+        <p class="vitrine-display">Viaje mais.<br>Gaste menos.</p>
+        <h3 class="vitrine-h2">A gente cuida do seu sonho.</h3>
+        <p class="vitrine-italic">a viagem começa quando você para de se preocupar</p>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Teste de legibilidade — mesmo parágrafo em 3 tamanhos</span>
+        <div class="size-grid">
+          <div class="size-col">
+            <span class="size-col-label">18px · confortável</span>
+            <p class="body-18">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+          <div class="size-col">
+            <span class="size-col-label">16px · padrão web</span>
+            <p class="body-16">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+          <div class="size-col">
+            <span class="size-col-label">14px · denso / mobile</span>
+            <p class="body-14">O Radar de Milhas é um grupo de WhatsApp onde a gente compartilha as melhores oportunidades de passagens por milhas e promoções reais — selecionadas a dedo, sem spam. Cada alerta é revisado antes de chegar até você. A gente não envia qualquer coisa: só o que vale a pena de verdade.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Amostra de UI — contexto real de interface</span>
+        <div class="ui-card">
+          <div class="ui-card-inner">
+            <span class="ui-card-mono">Oferta · Radar de Milhas</span>
+            <h4 class="ui-card-title">Fortaleza → Lisboa por 28.000 milhas</h4>
+            <p class="ui-card-body">Janela aberta até sexta-feira. Disponível em Smiles e Latam Pass. Ida e volta, econômica. Verifique a disponibilidade de datas antes de resgatar — a gente já checou as melhores janelas pra você.</p>
+            <a href="#" class="ui-cta-btn">Quero essa oferta</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Escala completa</span>
+        <div class="type-scale">
+          <div class="scale-row">
+            <span class="scale-label">Display · 64px</span>
+            <span class="scale-sample" style="font-family:'Source Serif 4',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:700">Nortear</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H1 · 48px</span>
+            <span class="scale-sample" style="font-family:'Source Serif 4',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700">Viaje mais, gaste menos</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H2 · 32px</span>
+            <span class="scale-sample" style="font-family:'Source Serif 4',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600">Como funciona o Radar</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">H3 · 22px</span>
+            <span class="scale-sample" style="font-family:'Source Serif 4',serif;font-size:clamp(1.1rem,2vw,1.35rem);font-weight:500">Curadoria humana, sem spam</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Corpo · 17px</span>
+            <span class="scale-sample" style="font-family:'Source Sans 3',sans-serif;font-size:17px;font-weight:400">A gente não vende pacote. A gente cuida do seu sonho.</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Caption · 13px</span>
+            <span class="scale-sample" style="font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--text-soft)">Feito com cuidado, no Nordeste · @nortearmundo</span>
+          </div>
+          <div class="scale-row">
+            <span class="scale-label">Mono · 11px</span>
+            <span class="scale-sample" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--c-coral)">Radar de Milhas · Grupo WhatsApp</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <span class="section-label">Comparativo direto com o Playfair atual</span>
+        <div class="compare-grid">
+          <div class="compare-col playfair">
+            <span class="compare-col-label atual">Atual — Playfair Display</span>
+            <p class="compare-20">Ofertas de milhas selecionadas a dedo</p>
+            <p class="compare-15">Ofertas de milhas selecionadas a dedo — traços finos frágeis neste tamanho</p>
+          </div>
+          <div class="compare-col proposta">
+            <span class="compare-col-label nova">Proposta — Source Serif 4 (contraste contido)</span>
+            <p class="compare-20">Ofertas de milhas selecionadas a dedo</p>
+            <p class="compare-15">Ofertas de milhas selecionadas a dedo — superfamília coesa, sólida em 15px</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<!-- ===== VEREDITO FINAL ===== -->
+<section class="verdict" aria-labelledby="verdict-heading">
+  <div class="verdict-inner">
+    <span class="eyebrow">Decisão Final do Cliente</span>
+    <h2 class="verdict-title" id="verdict-heading">Veredito Final</h2>
+    <p class="verdict-sub">Baseado no critério de legibilidade em tela, continuidade do DNA e execução no Elementor. <strong>O cliente escolheu a Opção 3</strong> (a recomendação original do Art Director era a Opção 1).</p>
+
+    <div class="verdict-cards">
+      <div class="verdict-card primary">
+        <span class="vc-label">Escolha final do cliente ★</span>
+        <div class="vc-name">Opção 3 · Notícia Calorosa</div>
+        <p class="vc-body">
+          Newsreader + Figtree + Space Mono. Newsreader é serif feita para leitura em tela (Production Type), com itálicos expressivos que servem ao itálico de confidência da marca — resolve a fragilidade do Playfair em tamanhos menores e mobile sem abrir mão da alma editorial. Figtree é humanista geométrica, clara e amigável no corpo. Space Mono mantém o boarding pass nas etiquetas. É a tipografia oficial do design system.
+        </p>
+      </div>
+      <div class="verdict-card">
+        <span class="vc-label">Recomendação do Art Director</span>
+        <div class="vc-name">Opção 1 · Editorial Legível</div>
+        <p class="vc-body">
+          Fraunces + Inter + DM Mono. Resolve a queixa de legibilidade na raiz: o eixo óptico (opsz) do Fraunces engrossa os traços finos automaticamente nos tamanhos onde o Playfair falha. Inter é o benchmark de corpo em UI. DM Mono mantém o boarding pass intacto. Era a primeira escolha do AD; o cliente preferiu a Opção 3.
+        </p>
+      </div>
+      <div class="verdict-card">
+        <span class="vc-label">Alternativa · risco zero</span>
+        <div class="vc-name">Opção 2 · Calor de Leitura</div>
+        <p class="vc-body">
+          Lora + Source Sans 3 + IBM Plex Mono. A mais à prova de falhas em qualquer tamanho e densidade. Lora tem contraste moderado — desenhada para tela, funciona de display a corpo. Chegou a ser registrada como escolha por um período, antes da revisão para a Opção 3.
+        </p>
+      </div>
+    </div>
+
+    <!-- Snippet Google Fonts da Opção 1 -->
+    <span class="section-label" style="border-color:rgba(252,247,240,.15)">Link Google Fonts — pronto para colar no &lt;head&gt;</span>
+    <div class="code-block">
+      <pre><span class="tok-comment">&lt;!-- Tipografia Opção 3: Newsreader + Figtree + Space Mono --&gt;</span>
+<span class="tok-punct">&lt;</span><span class="tok-prop">link</span> <span class="tok-prop">rel</span><span class="tok-punct">=</span><span class="tok-string">"preconnect"</span> <span class="tok-prop">href</span><span class="tok-punct">=</span><span class="tok-string">"https://fonts.googleapis.com"</span><span class="tok-punct">&gt;</span>
+<span class="tok-punct">&lt;</span><span class="tok-prop">link</span> <span class="tok-prop">rel</span><span class="tok-punct">=</span><span class="tok-string">"preconnect"</span> <span class="tok-prop">href</span><span class="tok-punct">=</span><span class="tok-string">"https://fonts.gstatic.com"</span> <span class="tok-prop">crossorigin</span><span class="tok-punct">&gt;</span>
+<span class="tok-punct">&lt;</span><span class="tok-prop">link</span> <span class="tok-prop">href</span><span class="tok-punct">=</span><span class="tok-string">"https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&amp;family=Figtree:wght@400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap"</span>
+      <span class="tok-prop">rel</span><span class="tok-punct">=</span><span class="tok-string">"stylesheet"</span><span class="tok-punct">&gt;</span></pre>
+    </div>
+
+    <!-- Vars CSS da Opção 1 -->
+    <span class="section-label" style="border-color:rgba(252,247,240,.15)">CSS Custom Properties — pronto para colar no :root</span>
+    <div class="code-block">
+      <pre><span class="tok-comment">/* Tipografia · Opção 3 — Notícia Calorosa */</span>
+<span class="tok-punct">:root {</span>
+  <span class="tok-prop">--font-display</span><span class="tok-punct">:</span> <span class="tok-string">'Newsreader'</span><span class="tok-punct">,</span> <span class="tok-value">Georgia</span><span class="tok-punct">,</span> <span class="tok-value">serif</span><span class="tok-punct">;</span>
+  <span class="tok-prop">--font-body</span><span class="tok-punct">:</span>    <span class="tok-string">'Figtree'</span><span class="tok-punct">,</span> <span class="tok-value">system-ui</span><span class="tok-punct">,</span> <span class="tok-value">sans-serif</span><span class="tok-punct">;</span>
+  <span class="tok-prop">--font-mono</span><span class="tok-punct">:</span>    <span class="tok-string">'Space Mono'</span><span class="tok-punct">,</span> <span class="tok-value">ui-monospace</span><span class="tok-punct">,</span> <span class="tok-value">monospace</span><span class="tok-punct">;</span>
+
+  <span class="tok-comment">/* Escalas fluidas */</span>
+  <span class="tok-prop">--text-display</span><span class="tok-punct">:</span> <span class="tok-value">clamp(2.4rem, 7vw, 5rem)</span><span class="tok-punct">;</span>
+  <span class="tok-prop">--text-h1</span><span class="tok-punct">:</span>      <span class="tok-value">clamp(2rem, 5vw, 3.4rem)</span><span class="tok-punct">;</span>
+  <span class="tok-prop">--text-h2</span><span class="tok-punct">:</span>      <span class="tok-value">clamp(1.5rem, 3.5vw, 2.4rem)</span><span class="tok-punct">;</span>
+  <span class="tok-prop">--text-h3</span><span class="tok-punct">:</span>      <span class="tok-value">clamp(1.15rem, 2vw, 1.4rem)</span><span class="tok-punct">;</span>
+  <span class="tok-prop">--text-body</span><span class="tok-punct">:</span>    <span class="tok-value">clamp(1rem, 1.2vw, 1.075rem)</span><span class="tok-punct">;</span>
+  <span class="tok-prop">--text-eyebrow</span><span class="tok-punct">:</span> <span class="tok-value">.72rem</span><span class="tok-punct">;</span>
+
+  <span class="tok-comment">/* Uso: sempre font-family: var(--font-display) nos h1/h2/display */</span>
+  <span class="tok-comment">/* Fraunces: adicionar font-optical-sizing: auto para ativar opsz */</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-comment">/* Ativar eixo óptico do Fraunces (essencial!) */</span>
+<span class="tok-value">h1, h2, h3, .display</span> <span class="tok-punct">{</span>
+  <span class="tok-prop">font-family</span><span class="tok-punct">:</span> <span class="tok-value">var(--font-display)</span><span class="tok-punct">;</span>
+  <span class="tok-prop">font-optical-sizing</span><span class="tok-punct">:</span> <span class="tok-value">auto</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-value">body, p, li</span> <span class="tok-punct">{</span>
+  <span class="tok-prop">font-family</span><span class="tok-punct">:</span> <span class="tok-value">var(--font-body)</span><span class="tok-punct">;</span>
+  <span class="tok-prop">line-height</span><span class="tok-punct">:</span> <span class="tok-value">1.7</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span>
+
+<span class="tok-value">.eyebrow, .label-mono, code</span> <span class="tok-punct">{</span>
+  <span class="tok-prop">font-family</span><span class="tok-punct">:</span> <span class="tok-value">var(--font-mono)</span><span class="tok-punct">;</span>
+  <span class="tok-prop">letter-spacing</span><span class="tok-punct">:</span> <span class="tok-value">.18em</span><span class="tok-punct">;</span>
+  <span class="tok-prop">text-transform</span><span class="tok-punct">:</span> <span class="tok-value">uppercase</span><span class="tok-punct">;</span>
+<span class="tok-punct">}</span></pre>
+    </div>
+  </div>
+</section>
+
+<footer class="footer-bar">
+  Nortear Mundo · Exploração Tipográfica · Uso interno · Paleta B "Pôr do Sol Tropical"
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+(function () {
+  'use strict';
+
+  /* ─── Toggle dark mode ─── */
+  const toggleDark = document.getElementById('toggleDark');
+  let isDark = false;
+
+  toggleDark.addEventListener('click', function () {
+    isDark = !isDark;
+    document.documentElement.classList.toggle('dark', isDark);
+    this.classList.toggle('active', isDark);
+    this.setAttribute('aria-pressed', String(isDark));
+  });
+
+  /* ─── Toggle tamanho base ─── */
+  const sizeBtns = document.querySelectorAll('.size-btn');
+  const body = document.body;
+
+  sizeBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      // remove active de todos
+      sizeBtns.forEach(function (b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      this.classList.add('active');
+      this.setAttribute('aria-pressed', 'true');
+
+      var scale = parseFloat(this.dataset.scale);
+      body.style.fontSize = 'calc(1rem * ' + scale + ')';
+    });
+  });
+
+  /* ─── Scroll reveal ─── */
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReduced) {
+    var reveals = document.querySelectorAll('.reveal');
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(function (el) { observer.observe(el); });
+  } else {
+    // se prefer-reduced-motion, mostra tudo imediatamente
+    document.querySelectorAll('.reveal').forEach(function (el) {
+      el.classList.add('visible');
+    });
+  }
+
+  /* ─── Previne "#" dos botões CTA na vitrine ─── */
+  document.querySelectorAll('a[href="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); });
+  });
+
+})();
+</script>
+</body>
+</html>

@@ -4,7 +4,7 @@
    ============================================================
    Use this as the single source of truth for visual foundations.
    - Brand palette (azul-led, laranja accent)
-   - Typography scale (Playfair Display + DM Sans + DM Mono)
+   - Typography scale (Newsreader + Figtree + Space Mono)
    - Semantic aliases (fg, bg, h1..h6, p, mono…)
    ============================================================ */
 
@@ -16,20 +16,21 @@
      COLORS — PRIMARY (Portuguese names preserved
      from the brandbook; English aliases below)
      ────────────────────────────────────────── */
-  --azul-nortear:    #1A5FA8;   /* Cor dominante — confiança, horizonte */
-  --azul-profundo:   #0D3B6E;   /* Contraste e peso — âncora */
-  --azul-ceu:        #4A8FD4;   /* Gradientes, hover */
-  --azul-nevoa:      #EBF3FB;   /* Cards, inputs, separadores suaves */
+  /* Tema "Pôr do Sol Tropical" — nomes preservados, valores evoluídos */
+  --azul-nortear:    #1A5FA8;   /* Azul Nortear — dominante, horizonte (mantido) */
+  --azul-profundo:   #0C3350;   /* Marinho Maré — âncora */
+  --azul-ceu:        #4A8FD4;   /* Azul Céu — gradientes, hover (mantido) */
+  --azul-nevoa:      #FBE9DD;   /* Rosa Aurora — cards, inputs, separadores (apoio quente) */
 
-  --laranja-nortear: #F47C20;   /* Acento — CTAs, destaques */
-  --laranja-ambar:   #FAA95A;   /* Hover de CTAs, decorativo */
-  --laranja-suave:   #FEF0E3;   /* Fundo de copy-exemplo */
+  --laranja-nortear: #FB6A3C;   /* Coral Poente — acento, CTAs, destaques */
+  --laranja-ambar:   #F6A645;   /* Âmbar Dourado — hover de CTAs, decorativo */
+  --laranja-suave:   #FEEFE6;   /* Coral Suave — fundo de copy-exemplo */
 
-  --branco-areia:    #FAFAF8;   /* Off-white — fundo padrão */
-  --cinza-claro:     #F2F1EF;   /* Cards alternados, divisores */
-  --cinza-medio:     #C8C4BE;   /* Bordas, hairlines */
-  --cinza-baunilha:  #6B6560;   /* Texto secundário */
-  --grafite:         #1C1916;   /* Texto principal (NUNCA #000) */
+  --branco-areia:    #FCF7F0;   /* Areia Quente — off-white, fundo padrão */
+  --cinza-claro:     #F0EBE3;   /* Areia 2 — cards alternados, divisores */
+  --cinza-medio:     #C9C1B6;   /* Borda — bordas, hairlines */
+  --cinza-baunilha:  #7A6E64;   /* Madeira — texto secundário */
+  --grafite:         #211A15;   /* Grafite Quente — texto principal (NUNCA #000) */
 
   /* Status (sparingly used — territory ✓/✗ only) */
   --sucesso:         #27AE60;
@@ -68,9 +69,9 @@
   /* ──────────────────────────────────────────
      TYPOGRAPHY — FAMILIES
      ────────────────────────────────────────── */
-  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-body:    'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono:    'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-body:    'Figtree', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'Space Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 
   /* ──────────────────────────────────────────
      TYPE SCALE — modular, mobile-first
@@ -90,14 +91,14 @@
   --lh-tight:   1.05;
   --lh-snug:    1.2;
   --lh-normal:  1.45;
-  --lh-relaxed: 1.7;   /* DM Sans body — sempre 1.7 */
+  --lh-relaxed: 1.7;   /* Figtree body — sempre 1.7 */
 
   /* Tracking */
   --ls-tight:   -0.02em;
   --ls-snug:    -0.01em;
   --ls-normal:   0;
   --ls-wide:     0.04em;
-  --ls-mono:     0.12em;   /* DM Mono labels */
+  --ls-mono:     0.12em;   /* Space Mono labels */
   --ls-mono-wide:0.18em;   /* Eyebrows, capa-tag */
 
   /* ──────────────────────────────────────────
@@ -130,11 +131,11 @@
      SHADOWS — soft, warm, never harsh
      Tinted with the deep blue rather than neutral
      ────────────────────────────────────────── */
-  --shadow-xs: 0 1px 2px rgba(13, 59, 110, 0.06);
-  --shadow-sm: 0 2px 8px rgba(13, 59, 110, 0.08);
-  --shadow-md: 0 8px 24px rgba(13, 59, 110, 0.10), 0 2px 6px rgba(13, 59, 110, 0.05);
-  --shadow-lg: 0 18px 48px rgba(13, 59, 110, 0.14), 0 4px 12px rgba(13, 59, 110, 0.06);
-  --shadow-focus: 0 0 0 3px rgba(244, 124, 32, 0.30);
+  --shadow-xs: 0 1px 2px rgba(12, 51, 80, 0.06);
+  --shadow-sm: 0 2px 8px rgba(12, 51, 80, 0.08);
+  --shadow-md: 0 8px 24px rgba(12, 51, 80, 0.10), 0 2px 6px rgba(12, 51, 80, 0.05);
+  --shadow-lg: 0 18px 48px rgba(12, 51, 80, 0.14), 0 4px 12px rgba(12, 51, 80, 0.06);
+  --shadow-focus: 0 0 0 3px rgba(251, 106, 60, 0.30);
 
   /* ──────────────────────────────────────────
      MOTION
@@ -174,7 +175,7 @@ body {
    ============================================================ */
 h1, .h1 {
   font-family: var(--font-display);
-  font-weight: 900;
+  font-weight: 600;
   font-size: clamp(var(--fs-3xl), 6vw, var(--fs-5xl));
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-tight);
@@ -185,7 +186,7 @@ h1, .h1 {
 
 h2, .h2 {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 600;
   font-size: clamp(var(--fs-xl), 3vw, var(--fs-2xl));
   line-height: var(--lh-snug);
   letter-spacing: var(--ls-snug);
@@ -196,7 +197,7 @@ h2, .h2 {
 
 h3, .h3 {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 600;
   font-size: var(--fs-lg);
   line-height: 1.3;
   color: var(--primary-deep);
@@ -230,7 +231,7 @@ a:hover { color: var(--accent); }
 strong, b { font-weight: 600; color: var(--fg); }
 em, i    { font-style: italic; }
 
-/* Italic Playfair for taglines / italic display */
+/* Italic Newsreader for taglines / italic display */
 .italic-display {
   font-family: var(--font-display);
   font-style: italic;
@@ -242,7 +243,7 @@ em, i    { font-style: italic; }
 .eyebrow, .mono-label {
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: var(--ls-mono-wide);
   text-transform: uppercase;
   color: var(--accent);
