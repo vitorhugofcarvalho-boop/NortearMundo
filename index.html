@@ -8,8 +8,8 @@
 <meta name="theme-color" content="#0C3350">
 
 <!-- Fonts: self-hosted woff2 — zero requisição para o Google -->
-<!-- Preload das DUAS fontes do LCP: título hero = Newsreader 600, corpo = Figtree 400 -->
-<link rel="preload" href="fonts/newsreader-600.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Preload das DUAS fontes do LCP: título hero = Newsreader variável (opsz+wght), corpo = Figtree 400 -->
+<link rel="preload" href="fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/figtree-400.woff2"    as="font" type="font/woff2" crossorigin>
 
 <!-- LCP poster: carrega antes de qualquer coisa -->
@@ -29,11 +29,10 @@
 @font-face{font-family:'Figtree';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/figtree-500.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
 @font-face{font-family:'Figtree';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/figtree-600.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
 @font-face{font-family:'Figtree';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/figtree-700.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Newsreader';font-style:italic;font-weight:400;font-display:swap;src:url('fonts/newsreader-400i.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Newsreader';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/newsreader-400.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Newsreader';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/newsreader-500.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Newsreader';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/newsreader-600.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
-@font-face{font-family:'Newsreader';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/newsreader-700.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+/* Newsreader VARIÁVEL (eixos opsz 6..72 + wght 200..800) — mesmo corte display
+   da página de opções e do Figma. font-optical-sizing:auto mapeia opsz pelo tamanho. */
+@font-face{font-family:'Newsreader';font-style:italic;font-weight:200 800;font-display:swap;src:url('fonts/newsreader-var-i.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:200 800;font-display:swap;src:url('fonts/newsreader-var.woff2') format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
 
 /* ===== colors_and_type.css ===== */
 /* ============================================================
@@ -442,7 +441,7 @@ input[type="radio"], input[type="checkbox"] { cursor: pointer; }
   margin-bottom: 20px;
 }
 .nm-display {
-  font-family: var(--font-display); font-weight: 600;
+  font-family: var(--font-display); font-weight: 600; font-optical-sizing: auto;
   font-size: clamp(2rem, 8.5vw, 5.5rem); line-height: 0.98;
   letter-spacing: -0.025em; color: #fff; margin: 0 0 24px;
   text-wrap: balance;

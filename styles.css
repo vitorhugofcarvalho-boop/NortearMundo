@@ -144,7 +144,7 @@ input[type="radio"], input[type="checkbox"] { cursor: pointer; }
   margin-bottom: 20px;
 }
 .nm-display {
-  font-family: var(--font-display); font-weight: 600;
+  font-family: var(--font-display); font-weight: 600; font-optical-sizing: auto;
   font-size: clamp(2rem, 8.5vw, 5.5rem); line-height: 0.98;
   letter-spacing: -0.025em; color: #fff; margin: 0 0 24px;
   text-wrap: balance;

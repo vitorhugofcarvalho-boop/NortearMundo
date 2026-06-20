@@ -2,7 +2,7 @@
 
 > Documento canônico do design system **oficial aprovado** da Nortear Mundo: paleta **"Pôr do Sol Tropical"** + tipografia **Newsreader / Figtree / Space Mono** (Opção 3 "Notícia Calorosa"). A estrutura (tokens, componentes, espaçamento, movimento) segue fiel à implementação do site (`fonts.css`, `colors_and_type.css`, `styles.css`, `index.html`, `content.json`); os **nomes dos tokens** foram preservados — só os valores (cor/fonte) evoluíram. Onde algo não está definido no código, está marcado como **(não definido no CSS)**.
 
-> **✅ Status de implementação (re-sincronizado em 2026-06-19):** a identidade evoluída está aplicada em **todos os entregáveis** — landing do Radar de Milhas, lookbook (`identidade-visual/`), tokens do Figma (`identidade-visual/figma/nortear-tokens.json`) **e o CSS do site** (`colors_and_type.css`, `styles.css`, `fonts.css` com woff2 self-hosted de Newsreader/Figtree/Space Mono, preloads do `<head>` e bloco inlined via `build_inline_css.py`). Restam no `/fonts` os woff2 antigos (playfair/dmsans/dmmono) órfãos — podem ser removidos. Alguns valores `rgba()` nas descrições de componentes (§5–§6) ainda citam o literal antigo da âncora (`#0D3B6E` → `rgba(13,59,110)`) como exemplo textual; o mapeamento canônico vigente está em §2.7 e o CSS real já usa Marinho Maré `rgba(12,51,80)`.
+> **✅ Status de implementação (re-sincronizado e no ar em 2026-06-19):** a identidade evoluída está aplicada e **deployada** (Vercel: `nortear-mundo.vercel.app`) em **todos os entregáveis** — landing do Radar de Milhas, lookbook (`identidade-visual/`), tokens do Figma (`identidade-visual/figma/nortear-tokens.json`) **e o CSS do site** (`colors_and_type.css`, `styles.css`, `fonts.css`). Fontes self-hosted: **Newsreader variável** (`newsreader-var` + `-var-i`, eixos `opsz`+`wght`) + Figtree + Space Mono; preloads do `<head>` e bloco inlined via `build_inline_css.py`. Os woff2 antigos (Playfair/DM Sans/DM Mono **e** as instâncias estáticas de Newsreader) já foram **removidos** de `/fonts`. Alguns valores `rgba()` nas descrições de componentes (§5–§6) ainda citam o literal antigo da âncora (`#0D3B6E` → `rgba(13,59,110)`) como exemplo textual; o mapeamento canônico vigente está em §2.8 e o CSS real já usa Marinho Maré `rgba(12,51,80)`.
 
 ---
 
@@ -24,9 +24,14 @@
 
 ## 2. Cores
 
-Tema oficial: **"Pôr do Sol Tropical"**. Os **nomes dos tokens** são os mesmos de `colors_and_type.css` (`:root`) — só os valores evoluíram (ver §2.7 para o mapa antigo→novo). As outras 3 paletas ficam como **modes alternativos** (§2.6).
+**Duas paletas mantidas como opções de trabalho** — os **nomes dos tokens são idênticos** nas duas, só mudam os valores resolvidos em `:root`. Alternar de paleta = trocar o bloco de valores (ver o diff direto em §2.8).
 
-### 2.1 Paleta primária — "Pôr do Sol Tropical" (nomes em português, do brandbook)
+- **Paleta A — "Pôr do Sol Tropical" (ATUAL, em produção)** — §2.1. Direção oficial aprovada; é a que está no site (`colors_and_type.css`) e em todos os entregáveis.
+- **Paleta B — "Horizonte" (ANTERIOR)** — §2.2. Paleta fiel original, de antes da evolução; mantida como alternativa válida pra trabalhar.
+
+As outras paletas exploratórias (Primeira Classe, Bússola & Mapa) seguem só como **modes do Figma** (§2.7).
+
+### 2.1 Paleta A — "Pôr do Sol Tropical" (ATUAL — em produção)
 
 | Variável | HEX | Nome de marca | Uso |
 |---|---|---|---|
@@ -47,14 +52,37 @@ Tema oficial: **"Pôr do Sol Tropical"**. Os **nomes dos tokens** são os mesmos
 
 > **Regra de contraste (BRAND-SPEC):** Coral Poente `#FB6A3C` sobre fundo claro só em **botão ou texto ≥16px bold** — não usar coral para corpo de texto pequeno sobre claro.
 
-### 2.2 Status (uso restrito — apenas território ✓/✗)
+### 2.2 Paleta B — "Horizonte" (ANTERIOR — alternativa)
+
+Paleta fiel original, em uso antes da evolução para Pôr do Sol Tropical. Mesmos nomes de token da Paleta A — basta substituir os valores em `:root` para alternar. Caráter mais **frio e neutro** (apoio claro e off-white frios, laranja mais saturado/amarelado).
+
+| Variável | HEX | Nome de marca | Uso |
+|---|---|---|---|
+| `--azul-nortear` | `#1A5FA8` | Azul Nortear | Cor dominante (igual à Paleta A) |
+| `--azul-profundo` | `#0D3B6E` | Azul Profundo | Âncora — headings, footer, seções escuras |
+| `--azul-ceu` | `#4A8FD4` | Azul Céu | Gradientes, hover (igual à Paleta A) |
+| `--azul-nevoa` | `#EBF3FB` | Azul Névoa | Apoio claro **frio** — cards, inputs, separadores |
+| `--laranja-nortear` | `#F47C20` | Laranja Nortear | Acento — CTAs, destaques |
+| `--laranja-ambar` | `#FAA95A` | Âmbar | Hover de CTAs, decorativo |
+| `--laranja-suave` | `#FEF0E3` | Laranja Suave | Fundo de copy-exemplo |
+| `--branco-areia` | `#FAFAF8` | Branco Areia | Off-white **frio** — fundo padrão |
+| `--cinza-claro` | `#F2F1EF` | Cinza Claro | Cards alternados, divisores |
+| `--cinza-medio` | `#C8C4BE` | Cinza Médio | Bordas, hairlines |
+| `--cinza-baunilha` | `#6B6560` | Cinza Baunilha | Texto secundário |
+| `--grafite` | `#1C1916` | Grafite | Texto principal (NUNCA #000) |
+
+> Status (`--sucesso`/`--erro`), WhatsApp `#25D366` e branco puro são **idênticos** nas duas paletas (§2.3, §2.6).
+
+### 2.3 Status (uso restrito — apenas território ✓/✗)
 
 | Variável | HEX | Uso |
 |---|---|---|
 | `--sucesso` | `#27AE60` | Sucesso (uso esparso) |
 | `--erro` | `#C0392B` | Erros de formulário (`.nm-field-error`) |
 
-### 2.3 Aliases semânticos
+### 2.4 Aliases semânticos
+
+Os aliases resolvem para os valores da **paleta ativa** (abaixo, com os HEX da Paleta A em produção; sob a Paleta B resolvem para os valores de §2.2).
 
 | Variável | Resolve para | Uso |
 |---|---|---|
@@ -77,14 +105,14 @@ Tema oficial: **"Pôr do Sol Tropical"**. Os **nomes dos tokens** são os mesmos
 | `--border` | `var(--cinza-claro)` = `#F0EBE3` | Bordas padrão |
 | `--border-strong` | `var(--cinza-medio)` = `#C9C1B6` | Bordas de inputs, hairlines fortes |
 
-### 2.4 Gradientes nomeados
+### 2.5 Gradientes nomeados
 
 | Variável | Valor |
 |---|---|
 | `--gradient-deep` | `linear-gradient(145deg, var(--azul-profundo) 0%, var(--azul-nortear) 60%, #2A7CC7 100%)` (resolve `#0C3350 → #1A5FA8 → #2A7CC7`) |
 | `--gradient-warm` | `linear-gradient(135deg, var(--azul-profundo), var(--azul-nortear))` (resolve `#0C3350 → #1A5FA8`) |
 
-### 2.5 Outras cores hardcoded relevantes (fora dos tokens)
+### 2.6 Outras cores hardcoded relevantes (fora dos tokens)
 
 | Cor | Onde aparece | Uso |
 |---|---|---|
@@ -94,24 +122,24 @@ Tema oficial: **"Pôr do Sol Tropical"**. Os **nomes dos tokens** são os mesmos
 | `#1A6DB8` | gradiente `.nm-radar` (etapa 65%) | Azul intermediário do gradiente animado do radar |
 | `#fff` / `#FFFFFF` | múltiplos | Branco puro — usado em cards, textos sobre fundo escuro |
 
-### 2.6 Temas alternativos (modes do Figma)
+### 2.7 Temas alternativos (modes do Figma)
 
 A coleção de cor no Figma (`identidade-visual/figma/nortear-tokens.json`) traz "Pôr do Sol Tropical" como mode padrão + 3 modes alternativos (troca a marca inteira num clique). Os 4 papéis-chave:
 
 | Mode | Primária | Âncora | Acento (CTA) | Fundo | Quando usar |
 |---|---|---|---|---|---|
-| **Pôr do Sol Tropical** ★ (padrão) | `#1A5FA8` | `#0C3350` | `#FB6A3C` | `#FCF7F0` | Produção — direção oficial |
-| Horizonte (fiel/atual) | `#1A5FA8` | `#0D3B6E` | `#F47C20` | `#FAFAF8` | Estado atual do site no ar |
+| **Pôr do Sol Tropical** ★ (= Paleta A) | `#1A5FA8` | `#0C3350` | `#FB6A3C` | `#FCF7F0` | Produção — direção oficial (no ar) |
+| Horizonte (= Paleta B) | `#1A5FA8` | `#0D3B6E` | `#F47C20` | `#FAFAF8` | Alternativa — paleta fiel anterior (§2.2) |
 | Primeira Classe (premium) | `#14324C` | `#0A1E33` | `#D9A557` (dourado) | `#F5EFE3` | Campanha premium/milhas |
 | Bússola & Mapa (terroso) | `#2F5A4E` | `#1E3D35` | `#C25A36` | `#F4EFE4` | Campanha explorador/Nat Geo |
 
 Espec completa de cada paleta: `identidade-visual/BRAND-SPEC.md` §"4 PALETAS".
 
-### 2.7 Mapa de migração — Horizonte → Pôr do Sol Tropical
+### 2.8 Diff direto — Paleta A ↔ Paleta B
 
-Guia para o re-sync do CSS do site (substituir nos arquivos `colors_and_type.css` e nas ocorrências hardcoded). **Valor antigo → valor novo:**
+Os únicos tokens que mudam entre as duas paletas (o resto é idêntico). Para **alternar**, troque a coluna no `:root` de `colors_and_type.css`. **Paleta B (anterior) → Paleta A (atual):**
 
-| Papel / token | Antigo (Horizonte) | Novo (Pôr do Sol) |
+| Papel / token | Paleta B (Horizonte) | Paleta A (Pôr do Sol) |
 |---|---|---|
 | `--azul-profundo` (âncora) | `#0D3B6E` | `#0C3350` |
 | `--laranja-nortear` (acento) | `#F47C20` | `#FB6A3C` |
@@ -137,13 +165,15 @@ Tipografia oficial: **Opção 3 "Notícia Calorosa" — Newsreader + Figtree + S
 
 | Família | Token | Arquivos woff2 (a gerar no re-sync) | Pesos/estilos |
 |---|---|---|---|
-| **Newsreader** | `--font-display: 'Newsreader', Georgia, 'Times New Roman', serif` | `newsreader-400.woff2`, `newsreader-400i.woff2`, `newsreader-500.woff2`, `newsreader-600.woff2` | 400 normal, 400 italic, 500 normal, 600 normal |
+| **Newsreader** *(variável)* | `--font-display: 'Newsreader', Georgia, 'Times New Roman', serif` | `newsreader-var.woff2` (roman), `newsreader-var-i.woff2` (italic) | **Fonte variável**: eixos `opsz` 6–72 + `wght` 200–800, roman + italic |
 | **Figtree** | `--font-body: 'Figtree', system-ui, -apple-system, BlinkMacSystemFont, sans-serif` | `figtree-400.woff2`, `figtree-500.woff2`, `figtree-600.woff2` | 400, 500, 600 (normal) |
 | **Space Mono** | `--font-mono: 'Space Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace` | `spacemono-400.woff2`, `spacemono-700.woff2` | 400, 700 (normal) |
 
-Todas com `font-display: swap`, self-hosted, subset latin (`unicode-range: U+0000-00FF...`), **já presentes em `/fonts`** (`newsreader-400/400i/500/600/700`, `figtree-400/500/600/700`, `spacemono-400/700`). Preload no `<head>` apenas para as duas fontes do LCP: `newsreader-600.woff2` (display do hero) e `figtree-400.woff2`.
+Todas com `font-display: swap`, self-hosted, subset latin (`unicode-range: U+0000-00FF...`), **presentes em `/fonts`**: `newsreader-var.woff2` + `newsreader-var-i.woff2` (variáveis), `figtree-400/500/600/700`, `spacemono-400/700`. Preload no `<head>` apenas para as duas fontes do LCP: `newsreader-var.woff2` (display do hero) e `figtree-400.woff2`.
 
-> **Nota de peso:** Newsreader não tem peso 900. Os títulos que no CSS antigo usavam Playfair 900 passaram a **Newsreader 600** (o mais pesado útil); os que usavam Playfair 700 também foram para **600** (aplicado em `colors_and_type.css` e `styles.css`). Ver §3.5/§3.6.
+> **Por que variável (opsz):** Newsreader é uma fonte de *optical size*. A versão **variável** (`newsreader-var`) com `font-optical-sizing: auto` faz o desenho ganhar **contraste fino/grosso "display"** automaticamente nos tamanhos grandes (hero) e ficar mais robusto/legível no corpo — é o que casa o site com a página de tipografia (`identidade-visual/tipografia-opcoes.html`) e o Figma. As instâncias estáticas antigas (`newsreader-400/500/600/700`) travavam num único corte e foram removidas.
+>
+> **Nota de peso:** o hero (`.nm-display`) usa **Newsreader 600** com `font-optical-sizing: auto` (peso real interpolado da fonte variável — sem faux-bold). Newsreader vai até 800 real; 600 é o peso de display adotado. Títulos que no CSS antigo usavam Playfair 900/700 foram para **600** (`colors_and_type.css` e `styles.css`). Ver §3.5/§3.6.
 
 ### 3.2 Escala tipográfica (`--fs-*`)
 
@@ -301,7 +331,7 @@ Todas com `font-display: swap`, self-hosted, subset latin (`unicode-range: U+000
 
 ## 5. Raios, sombras e bordas
 
-> **Nota de cor (§5–§6):** o CSS do site **já foi re-sincronizado** para "Pôr do Sol Tropical" — âncora Marinho Maré `#0C3350` → `rgba(12,51,80,…)` e acento Coral Poente `#FB6A3C` → `rgba(251,106,60,…)`. Alguns valores `rgba()` citados nas descrições de componentes abaixo ainda usam o **literal antigo** (`rgba(13,59,110)`/`rgba(244,124,32)`) apenas como texto histórico; a referência canônica é o mapa em §2.7. Os tokens de sombra em §5.2 já estão no valor novo.
+> **Nota de cor (§5–§6):** o CSS do site **já foi re-sincronizado** para "Pôr do Sol Tropical" — âncora Marinho Maré `#0C3350` → `rgba(12,51,80,…)` e acento Coral Poente `#FB6A3C` → `rgba(251,106,60,…)`. Alguns valores `rgba()` citados nas descrições de componentes abaixo ainda usam o **literal antigo** (`rgba(13,59,110)`/`rgba(244,124,32)`) apenas como texto histórico; a referência canônica é o mapa em §2.8. Os tokens de sombra em §5.2 já estão no valor novo.
 
 ### 5.1 Raios (`--radius-*`)
 
@@ -777,7 +807,7 @@ Classe base `.ico`: `display: inline-block; flex: none; width: 16px; height: 16p
 
 ### 9.3 Fontes
 
-Self-hosted em `/fonts`, todas `.woff2`, subset latin. Preload apenas das duas fontes do LCP (`newsreader-600.woff2`, `figtree-400.woff2`). CSS é 100% inlined no `<head>` via `build_inline_css.py` (não editar o bloco `BUILD:CSS-INLINE-*` manualmente — rodar `python build_inline_css.py` após editar qualquer `.css`). *(Os `.woff2` de Newsreader/Figtree/Space Mono já estão em `/fonts`; os antigos de Playfair/DM Sans/DM Mono ficaram órfãos e podem ser removidos.)*
+Self-hosted em `/fonts`, todas `.woff2`, subset latin. **Newsreader é variável** (`newsreader-var.woff2` roman + `newsreader-var-i.woff2` italic, eixos `opsz`+`wght`); Figtree (400/500/600/700) e Space Mono (400/700) são estáticas. Preload apenas das duas fontes do LCP (`newsreader-var.woff2`, `figtree-400.woff2`). CSS é 100% inlined no `<head>` via `build_inline_css.py` (não editar o bloco `BUILD:CSS-INLINE-*` manualmente — rodar `python build_inline_css.py` após editar qualquer `.css`). *(Os estáticos antigos de Playfair/DM Sans/DM Mono e as instâncias estáticas de Newsreader foram removidos — só restam os arquivos acima.)*
 
 ---
 
